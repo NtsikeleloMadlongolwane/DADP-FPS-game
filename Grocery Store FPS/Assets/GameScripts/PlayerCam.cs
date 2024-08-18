@@ -16,7 +16,7 @@ public class PlayerCam : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //this locks the cursor's position is middle of the screen.
-        Cursor.visible = false; //this make the cursor invisible.
+        Cursor.visible = true; //this make the cursor invisible.
     }
 
     private void Update()
