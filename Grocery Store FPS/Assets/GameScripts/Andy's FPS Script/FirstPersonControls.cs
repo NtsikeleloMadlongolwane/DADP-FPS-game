@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FirstPersonControls : MonoBehaviour
+/*public class FirstPersonControls : MonoBehaviour
 {
     // Public variables to set movement and look speed, and the player camera
 
@@ -32,7 +32,7 @@ public class FirstPersonControls : MonoBehaviour
     private void OnEnable()
     {
         // Create a new instance of the input actions
-        var playerInput = new Controls();
+     //   var playerInput = new Controls();
 
         // Enable the input actions
         playerInput.Player.Enable();
@@ -96,4 +96,4 @@ public class FirstPersonControls : MonoBehaviour
         velocity.y += gravity * Time.deltaTime; // Apply gravity to the velocity
         characterController.Move(velocity * Time.deltaTime); // Apply the velocity to the character
     }
-}
+}*/
