@@ -196,7 +196,7 @@
                     "id": "4c85ccee-2ad6-48a9-8139-bf9ddd6003b2",
                     "path": "<Pointer>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=0.5,y=0.5)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
