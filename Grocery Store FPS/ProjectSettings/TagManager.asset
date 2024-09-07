@@ -8,6 +8,10 @@ TagManager:
   - Door
   - Gun
   - PickUp
+  - Wall
+  - Podium
+  - Enemy
+  - KillBox
   layers:
   - Default
   - TransparentFX

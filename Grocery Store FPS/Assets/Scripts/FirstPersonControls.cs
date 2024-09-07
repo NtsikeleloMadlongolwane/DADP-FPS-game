@@ -23,10 +23,13 @@ public class FirstPersonControls : MonoBehaviour
     [Header("SHOOTING SETTINGS")]
     [Space(5)]
     public GameObject projectilePrefab; // Projectile prefab for shooting
-    public Transform firePoint; // Point from which the projectile is fired
+    public Transform RightFirePoint;
+    public Transform LeftFirePoint;
+    
+    // Point from which the projectile is fired
     public float projectileSpeed = 20f; // Speed at which the projectile is fired
     public float pickUpRange = 3f; // Range within which objects can be picked up
-    private bool holdingGun = false;
+   // private bool holdingGun = false;
 
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
@@ -46,6 +49,26 @@ public class FirstPersonControls : MonoBehaviour
     public Material switchMaterial; // Material to apply when switch is activated
     public GameObject[] objectsToChangeColor; // Array of objects to change color
 
+    [Header("CUSTOM MECHANICS")]
+
+
+    public string objectName; // this checks the objcets name and unlockes certain unpgrades that conrelates with the object
+
+    [Header("Melee")]
+    public GameObject swordStrikePrefab; // sword slash prefab for attacking
+    public Transform strikePoint; // Point from which the slash is appear
+    [Space(5)]
+
+    [Header("DoubleJump")]
+    public bool doubleJumpUnlocked = false;
+    public bool midAir = true; //double Jump Bool
+    public float doubleJumpModifier = 0f; // Modifier. This is mutlipied with the jump height to get double jumo height
+    [Space(5)]
+
+    [Header("GunCrown")]
+    public bool gunCrownUnlocked = true;
+    public int Ammunition;
+    public float shootingCooldown = 0f;
 
 
     private void Awake()
@@ -54,6 +77,11 @@ public class FirstPersonControls : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+    }
     private void OnEnable()
     {
         // Create a new instance of the input actions
@@ -74,7 +102,7 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.Jump.performed += ctx => Jump(); // Call the Jump method when jump input is performed
 
         // Subscribe to the shoot input event
-        playerInput.Player.Shoot.performed += ctx => Shoot(); // Call the Shoot method when shoot input is performed
+        playerInput.Player.Shoot.performed += ctx => GunCrown(); // Call the Shoot method when shoot input is performed
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
@@ -152,10 +180,19 @@ public class FirstPersonControls : MonoBehaviour
         {
             // Calculate the jump velocity
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            midAir = true;
+        }
+        else
+        {
+            if (midAir == true)
+            {
+                DoubleJump();
+                midAir = false;
+            }
         }
     }
 
-    public void Shoot()
+   /* public void Shoot()
     {
         if (holdingGun == true)
         {
@@ -169,7 +206,7 @@ public class FirstPersonControls : MonoBehaviour
             // Destroy the projectile after 3 seconds
             Destroy(projectile, 3f);
         }
-    }
+    }*/
 
     public void PickUpObject()
     {
@@ -178,7 +215,7 @@ public class FirstPersonControls : MonoBehaviour
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
             heldObject.transform.parent = null;
-            holdingGun = false;
+           // holdingGun = false;
         }
 
         // Perform a raycast from the camera's position forward
@@ -202,6 +239,20 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.position = holdPosition.position;
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
+
+                //UDGRADE CHECK
+                objectName = heldObject.transform.name;
+                Debug.Log(objectName);
+                if (objectName == "Key 1 (DoubleJump)")
+                {
+                    doubleJumpUnlocked = true;
+                    Debug.Log("You just picked up " + objectName);
+                }
+                else if (objectName == "Key 2 (Gun-Crown)")
+                {
+                    gunCrownUnlocked = true;
+                    Debug.Log("You just picked up " + objectName);
+                }
             }
             else if (hit.collider.CompareTag("Gun"))
             {
@@ -214,7 +265,7 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
 
-                holdingGun = true;
+               // holdingGun = true;
             }
         }
     }
@@ -281,4 +332,63 @@ public class FirstPersonControls : MonoBehaviour
     }
 
 
+    /// CUSTOM CODE/
+
+    public void Attack()
+    {
+        // Instantiate the sword slash at the srike point
+        GameObject slash = Instantiate(swordStrikePrefab, strikePoint.position, strikePoint.rotation);
+
+
+        // Get the Rigidbody component of the projectile and set its velocity
+        // Rigidbody rb = swordStrikePrefab.GetComponent<Rigidbody>();
+        //rb.velocity = strikePoint.forward * strikeSpeed;
+
+        // Destroy the projectile after 3 seconds
+        Destroy(slash, 0.1f);
+
+    }
+
+    public void DoubleJump()
+    {
+        if (doubleJumpUnlocked == true)
+        {
+            velocity.y = Mathf.Sqrt((jumpHeight * doubleJumpModifier) * -2f * gravity);
+        }
+    }
+
+
+    public void GunCrown()
+    {
+        if (gunCrownUnlocked == true)
+        {
+            if (Ammunition == 1)
+            {
+
+                // Instantiate the projectile at the fire point
+                GameObject projectile1 = Instantiate(projectilePrefab, RightFirePoint.position, RightFirePoint.rotation);
+                GameObject projectile2 = Instantiate(projectilePrefab, LeftFirePoint.position, LeftFirePoint.rotation);
+
+                // Get the Rigidbody component of the projectile and set its velocity
+                Rigidbody rb = projectile1.GetComponent<Rigidbody>();
+                rb.velocity = RightFirePoint.forward * projectileSpeed;
+
+                Rigidbody rb2 = projectile2.GetComponent<Rigidbody>();
+                rb2.velocity = LeftFirePoint.forward * projectileSpeed;
+
+                gunCrownUnlocked = false;
+                // Destroy the projectile after 3 seconds
+                Destroy(projectile1, 3f);
+                Destroy(projectile2, 3f);
+                Invoke("ShootingCooldown", shootingCooldown);
+
+            }
+
+        }
+    }
+    void ShootingCooldown()
+    {
+        Debug.Log("This function is called after a 2-second delay.");
+        gunCrownUnlocked = true;
+    }
 }
