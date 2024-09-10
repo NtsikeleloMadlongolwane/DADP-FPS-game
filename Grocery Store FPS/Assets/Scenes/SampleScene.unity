@@ -2123,6 +2123,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1927755354}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!1 &1309740145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5819779547714810077, guid: 8cc9d370623c1d74a9ee61181a619ba3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2014720919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1395621971 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5819779547714810077, guid: 8cc9d370623c1d74a9ee61181a619ba3,
+    type: 3}
+  m_PrefabInstance: {fileID: 650789353}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1475403822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2439,6 +2451,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706246466}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1734136682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5819779547714810077, guid: 8cc9d370623c1d74a9ee61181a619ba3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1871896068}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1768034242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,7 +2481,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768034242}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3f3c30533926b0459f544b4b9a8e110, type: 3}
   m_Name: 
@@ -2471,6 +2489,9 @@ MonoBehaviour:
   fourPodiums: {fileID: 1768034242}
   objectsToMonitor:
   - {fileID: 636600640}
+  - {fileID: 1734136682}
+  - {fileID: 1309740145}
+  - {fileID: 1395621971}
   timeForPodiumsToRise: 2
   podiumsDestroyed: 0
   cameraTransform: {fileID: 330585546}
