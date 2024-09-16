@@ -24,12 +24,12 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public GameObject projectilePrefab; // Projectile prefab for shooting
     public Transform RightFirePoint;
-    public Transform LeftFirePoint;
-    
+   // public Transform LeftFirePoint;
+
     // Point from which the projectile is fired
     public float projectileSpeed = 20f; // Speed at which the projectile is fired
     public float pickUpRange = 3f; // Range within which objects can be picked up
-   // private bool holdingGun = false;
+                                   // private bool holdingGun = false;
 
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
@@ -51,7 +51,6 @@ public class FirstPersonControls : MonoBehaviour
 
     [Header("CUSTOM MECHANICS")]
 
-
     public string objectName; // this checks the objcets name and unlockes certain unpgrades that conrelates with the object
 
     [Header("Melee")]
@@ -69,6 +68,10 @@ public class FirstPersonControls : MonoBehaviour
     public bool gunCrownUnlocked = true;
     public int Ammunition;
     public float shootingCooldown = 0f;
+
+    [Header("Platform Things")]
+
+    public GameObject flaseBottom;
 
 
     private void Awake()
@@ -192,21 +195,21 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
-   /* public void Shoot()
-    {
-        if (holdingGun == true)
-        {
-            // Instantiate the projectile at the fire point
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    /* public void Shoot()
+     {
+         if (holdingGun == true)
+         {
+             // Instantiate the projectile at the fire point
+             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
-            // Get the Rigidbody component of the projectile and set its velocity
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            rb.velocity = firePoint.forward * projectileSpeed;
+             // Get the Rigidbody component of the projectile and set its velocity
+             Rigidbody rb = projectile.GetComponent<Rigidbody>();
+             rb.velocity = firePoint.forward * projectileSpeed;
 
-            // Destroy the projectile after 3 seconds
-            Destroy(projectile, 3f);
-        }
-    }*/
+             // Destroy the projectile after 3 seconds
+             Destroy(projectile, 3f);
+         }
+     }*/
 
     public void PickUpObject()
     {
@@ -215,7 +218,7 @@ public class FirstPersonControls : MonoBehaviour
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
             heldObject.transform.parent = null;
-           // holdingGun = false;
+            // holdingGun = false;
         }
 
         // Perform a raycast from the camera's position forward
@@ -247,6 +250,7 @@ public class FirstPersonControls : MonoBehaviour
                 {
                     doubleJumpUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
+                    Destroy(flaseBottom);
                 }
                 else if (objectName == "Key 2 (Gun-Crown)")
                 {
@@ -265,7 +269,7 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
 
-               // holdingGun = true;
+                // holdingGun = true;
             }
         }
     }
@@ -367,19 +371,19 @@ public class FirstPersonControls : MonoBehaviour
 
                 // Instantiate the projectile at the fire point
                 GameObject projectile1 = Instantiate(projectilePrefab, RightFirePoint.position, RightFirePoint.rotation);
-                GameObject projectile2 = Instantiate(projectilePrefab, LeftFirePoint.position, LeftFirePoint.rotation);
+                //GameObject projectile2 = Instantiate(projectilePrefab, LeftFirePoint.position, LeftFirePoint.rotation);
 
                 // Get the Rigidbody component of the projectile and set its velocity
                 Rigidbody rb = projectile1.GetComponent<Rigidbody>();
                 rb.velocity = RightFirePoint.forward * projectileSpeed;
 
-                Rigidbody rb2 = projectile2.GetComponent<Rigidbody>();
-                rb2.velocity = LeftFirePoint.forward * projectileSpeed;
+               // Rigidbody rb2 = projectile2.GetComponent<Rigidbody>();
+               // rb2.velocity = LeftFirePoint.forward * projectileSpeed;
 
                 gunCrownUnlocked = false;
                 // Destroy the projectile after 3 seconds
                 Destroy(projectile1, 3f);
-                Destroy(projectile2, 3f);
+                //Destroy(projectile2, 3f);
                 Invoke("ShootingCooldown", shootingCooldown);
 
             }
