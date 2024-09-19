@@ -8,14 +8,14 @@ public class Podium : MonoBehaviour
 
     public bool UnlockesDoor = true;
 
-    public GameObject doorBlockingCollider;
+   // public GameObject doorBlockingCollider;
 
     public void Start()
     {
         LockedKey.SetActive(false);
         if (UnlockesDoor == true)
         {
-            doorBlockingCollider.SetActive(true);
+           // doorBlockingCollider.SetActive(true);
         }
     }
 
@@ -28,7 +28,7 @@ public class Podium : MonoBehaviour
                 Debug.Log("Collided with an object tagged as PickUp");
                 Destroy(collision.gameObject);
                 LockedKey.SetActive(true);
-                doorBlockingCollider.SetActive(false);
+               // doorBlockingCollider.SetActive(false);
 
             }
             else
