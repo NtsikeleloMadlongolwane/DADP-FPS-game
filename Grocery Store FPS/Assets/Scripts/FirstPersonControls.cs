@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FirstPersonControls : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class FirstPersonControls : MonoBehaviour
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
 
- 
+
     // Crouch settings
     [Header("CROUCH SETTINGS")]
     [Space(5)]
@@ -70,6 +71,7 @@ public class FirstPersonControls : MonoBehaviour
     public bool gunCrownUnlocked = true;
     public int Ammunition;
     public float shootingCooldown = 0f;
+    public GameObject upgradeMenu;
 
     [Header("Platform Things")]
     public GameObject trapDoor1;
@@ -110,7 +112,7 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the shoot input event
         playerInput.Player.Shoot.performed += ctx => GunCrown(); // Call the Shoot method when shoot input is performed
 
-        playerInput.Player.Attack.performed += ctx => Attack(); // call attack when attack is performed
+       // playerInput.Player.Attack.performed += ctx => Attack(); // call attack when attack is performed
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
@@ -119,7 +121,13 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.Crouch.performed += ctx => ToggleCrouch(); // Call the ToggleCrouch method when crouch input is performed
 
         // Subscribe to the interact input event
-        playerInput.Player.Interact.performed += ctx => Interact(); // Interact with switch
+        playerInput.Player.Interact.performed += ctx => Interact(); // Interact with switch\
+
+        playerInput.Player.Restart.performed += ctx => Restart(); // Interact with switch\
+
+        playerInput.Player.QuitMenu.performed += ctx => QuitMenu(); // Interact with switch\
+
+
     }
 
     private void Update()
@@ -240,17 +248,18 @@ public class FirstPersonControls : MonoBehaviour
             if (hit.collider.CompareTag("PickUp"))
             {
                 // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+              heldObject = hit.collider.gameObject;
+               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
                 // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
+               heldObject.transform.position = holdPosition.position;
                 heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
+               heldObject.transform.parent = holdPosition;
 
                 //UDGRADE CHECK
                 objectName = heldObject.transform.name;
                 Debug.Log(objectName);
+
                 if (objectName == "Key 1")
                 {
                     doubleJumpUnlocked = true;
@@ -263,6 +272,7 @@ public class FirstPersonControls : MonoBehaviour
                     Debug.Log("You just picked up " + objectName);
                     trapDoor2.SetActive(false);
                 }
+               
             }
             else if (hit.collider.CompareTag("Gun"))
             {
@@ -321,6 +331,13 @@ public class FirstPersonControls : MonoBehaviour
             {
                 // Start moving the door upwards
                 StartCoroutine(RaiseDoor(hit.collider.gameObject));
+            }
+            else if (hit.collider.CompareTag("Upgrade"))
+            {
+                gunCrownUnlocked = true;
+                Debug.Log("You just picked up " + objectName);
+                upgradeMenu.SetActive(true);
+                Destroy(hit.collider.gameObject);
             }
         }
     }
@@ -383,8 +400,8 @@ public class FirstPersonControls : MonoBehaviour
                 Rigidbody rb = projectile1.GetComponent<Rigidbody>();
                 rb.velocity = RightFirePoint.forward * projectileSpeed;
 
-               // Rigidbody rb2 = projectile2.GetComponent<Rigidbody>();
-               // rb2.velocity = LeftFirePoint.forward * projectileSpeed;
+                // Rigidbody rb2 = projectile2.GetComponent<Rigidbody>();
+                // rb2.velocity = LeftFirePoint.forward * projectileSpeed;
 
                 gunCrownUnlocked = false;
                 // Destroy the projectile after 3 seconds
@@ -401,4 +418,17 @@ public class FirstPersonControls : MonoBehaviour
         Debug.Log("This function is called after a 2-second delay.");
         gunCrownUnlocked = true;
     }
+
+    public void Restart()
+    {
+        Time.timeScale = 1f; // Ensure the game is unpaused
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+    }
+
+    public void QuitMenu()
+    {
+        upgradeMenu.SetActive(false);
+    }
+
+
 }

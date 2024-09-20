@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
 
-   // public Transform targetPoint;
+    // public Transform targetPoint;
+
+    public GameObject PauseScreen;
 
     public int maxHealth = 100;
     private int currentHealth;
@@ -36,5 +39,9 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player died!");
         // Add your death logic here
+        Time.timeScale = 0f;
+        PauseScreen.SetActive(true);
     }
+
+ 
 }
