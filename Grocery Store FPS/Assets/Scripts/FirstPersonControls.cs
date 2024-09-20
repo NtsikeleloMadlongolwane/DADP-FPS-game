@@ -110,6 +110,8 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the shoot input event
         playerInput.Player.Shoot.performed += ctx => GunCrown(); // Call the Shoot method when shoot input is performed
 
+        playerInput.Player.Attack.performed += ctx => Attack(); // call attack when attack is performed
+
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
 

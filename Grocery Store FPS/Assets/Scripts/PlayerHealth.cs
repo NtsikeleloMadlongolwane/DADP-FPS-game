@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public Transform targetPoint;
+   // public Transform targetPoint;
 
     public int maxHealth = 100;
     private int currentHealth;

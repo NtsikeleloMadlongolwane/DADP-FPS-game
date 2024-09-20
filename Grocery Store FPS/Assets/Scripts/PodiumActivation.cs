@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PodiumActivation : MonoBehaviour
 {
+
+    public GameObject boss;
+
     [Header("Podius Raise")]
     public GameObject fourPodiums;
     public List<GameObject> objectsToMonitor; // List of GameObjects to monitor
@@ -53,7 +56,7 @@ public class PodiumActivation : MonoBehaviour
         }
         if (podiumsDestroyed == true)
         {
-            Destroy(this.gameObject);
+            boss.SetActive(true);
         }
     }
     private IEnumerator RaiseDoor(GameObject door)
