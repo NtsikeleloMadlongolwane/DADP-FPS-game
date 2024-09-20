@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FirstPersonControls : MonoBehaviour
@@ -24,7 +25,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public GameObject projectilePrefab; // Projectile prefab for shooting
     public Transform RightFirePoint;
-   // public Transform LeftFirePoint;
+    // public Transform LeftFirePoint;
 
     // Point from which the projectile is fired
     public float projectileSpeed = 20f; // Speed at which the projectile is fired
@@ -36,6 +37,7 @@ public class FirstPersonControls : MonoBehaviour
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
 
+ 
     // Crouch settings
     [Header("CROUCH SETTINGS")]
     [Space(5)]
@@ -70,8 +72,9 @@ public class FirstPersonControls : MonoBehaviour
     public float shootingCooldown = 0f;
 
     [Header("Platform Things")]
+    public GameObject trapDoor1;
+    public GameObject trapDoor2;
 
-    public GameObject flaseBottom;
 
 
     private void Awake()
@@ -246,16 +249,17 @@ public class FirstPersonControls : MonoBehaviour
                 //UDGRADE CHECK
                 objectName = heldObject.transform.name;
                 Debug.Log(objectName);
-                if (objectName == "Key 1 (DoubleJump)")
+                if (objectName == "Key 1")
                 {
                     doubleJumpUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
-                    Destroy(flaseBottom);
+                    trapDoor1.SetActive(false);
                 }
-                else if (objectName == "Key 2 (Gun-Crown)")
+                else if (objectName == "Key 2")
                 {
                     gunCrownUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
+                    trapDoor2.SetActive(false);
                 }
             }
             else if (hit.collider.CompareTag("Gun"))

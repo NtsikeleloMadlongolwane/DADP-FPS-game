@@ -6,15 +6,25 @@ using UnityEngine;
 
 public class TrapDoor : MonoBehaviour
 {
+    private int count = 1;
     public GameObject enemies;
     public GameObject trapDoor;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            trapDoor.SetActive(true);
-            Debug.Log("Trap door activated");
-            enemies.SetActive(true);
+            if (count == 1)
+            {
+                trapDoor.SetActive(true);
+                Debug.Log("Trap door activated");
+                enemies.SetActive(true);
+                count = 0;
+            }
+            else
+            {
+
+            }
+
         }
    
     }
