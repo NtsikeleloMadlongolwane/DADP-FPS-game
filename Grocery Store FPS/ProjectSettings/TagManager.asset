@@ -12,6 +12,7 @@ TagManager:
   - Podium
   - Enemy
   - KillBox
+  - Upgrade
   layers:
   - Default
   - TransparentFX
