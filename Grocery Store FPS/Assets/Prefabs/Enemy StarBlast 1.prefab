@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3328104612111822922
+--- !u!1001 &3535923142676119196
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,38 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
-        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -72.79426
+      value: 146.45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.073
+      value: 35.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 283.9143
+      value: -31.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.7071067
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
@@ -56,12 +41,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
@@ -77,16 +62,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f3f3417e65de9f648ae4a4a29cb0e3a7, type: 2}
+      objectReference: {fileID: 2100000, guid: 3e86268782c0a8747aa9b0e08148882e, type: 2}
     - target: {fileID: 919132149155446097, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       propertyPath: m_Name
-      value: StarBlast
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: c91637bb5ba81474c9f67b961e1a2128,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Enemy StarBlast 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -95,33 +75,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3856809065678933595}
+      addedObject: {fileID: 4167991714770259653}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7726193191052259030}
+      addedObject: {fileID: 7539741814739307308}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c91637bb5ba81474c9f67b961e1a2128,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3542377338330833103}
+      addedObject: {fileID: -8788293919798278193}
   m_SourcePrefab: {fileID: 100100000, guid: c91637bb5ba81474c9f67b961e1a2128, type: 3}
---- !u!1 &2517129918543727899 stripped
+--- !u!1 &4455034803762742221 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c91637bb5ba81474c9f67b961e1a2128,
     type: 3}
-  m_PrefabInstance: {fileID: 3328104612111822922}
+  m_PrefabInstance: {fileID: 3535923142676119196}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &3856809065678933595
+--- !u!54 &4167991714770259653
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517129918543727899}
+  m_GameObject: {fileID: 4455034803762742221}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -133,31 +113,31 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &7726193191052259030
+  m_CollisionDetection: 1
+--- !u!114 &7539741814739307308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517129918543727899}
+  m_GameObject: {fileID: 4455034803762742221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4fbfa783eec0d4c85528c864ff4159, type: 3}
+  m_Script: {fileID: 11500000, guid: c1421b414aefa2240a093d89b035f3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 50
---- !u!135 &-3542377338330833103
+  speed: 100
+--- !u!135 &-8788293919798278193
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517129918543727899}
+  m_GameObject: {fileID: 4455034803762742221}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -170,5 +150,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0032
-  m_Center: {x: 0.000011560507, y: -0.000047128193, z: 0.0015548173}
+  m_Radius: 0.021016156
+  m_Center: {x: 0.000011560507, y: -0.000047128175, z: 0.0015548167}

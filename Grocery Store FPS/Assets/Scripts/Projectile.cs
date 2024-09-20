@@ -4,37 +4,20 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
-    {
-        // Check if the bullet has collided with a target
-        if (collision.gameObject.CompareTag("Door"))
+    public int damageAmount = 0; 
+        void OnTriggerEnter(Collider hitInfo)
         {
-            // Destroy the bullet GameObject
+            // Add logic for what happens when the bullet hits something
+            if (hitInfo.CompareTag("Enemy"))
+            {
+                EnemyHealth enemyHealth = hitInfo.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(damageAmount);
+                    Debug.Log("Player damaged by hurt box!");
+                }
+            }
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Gun"))
-        {
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("PickUp"))
-        {
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Podium"))
-        {
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("KillBox"))
-        {
-            Destroy(gameObject);
-        }
-    }
+   
 }
