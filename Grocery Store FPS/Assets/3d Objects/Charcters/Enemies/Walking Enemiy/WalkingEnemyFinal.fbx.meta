@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: 1b0cbf2399b7176409d1eb2a1352faf8
+guid: 51358291214fd6646aa79a6c74ad2165
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BodyTexture
+    second: {fileID: 2800000, guid: 68103a7bdff475c4daf48f2a85891430, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EyeColor
+    second: {fileID: 2800000, guid: 0cd2be1db2d023a47be672b3da0d64f4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EyeNormal
+    second: {fileID: 2800000, guid: 3756cf84f24840548b405772b7b9656e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -99,7 +114,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

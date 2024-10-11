@@ -56,11 +56,6 @@ public class FirstPersonControls : MonoBehaviour
 
     public string objectName; // this checks the objcets name and unlockes certain unpgrades that conrelates with the object
 
-    [Header("Melee")]
-    public GameObject swordStrikePrefab; // sword slash prefab for attacking
-    public Transform strikePoint; // Point from which the slash is appear
-    [Space(5)]
-
     [Header("DoubleJump")]
     public bool doubleJumpUnlocked = false;
     public bool midAir = true; //double Jump Bool
@@ -71,13 +66,6 @@ public class FirstPersonControls : MonoBehaviour
     public bool gunCrownUnlocked = true;
     public int Ammunition;
     public float shootingCooldown = 0f;
-    public GameObject upgradeMenu;
-
-    [Header("Platform Things")]
-    public GameObject trapDoor1;
-    public GameObject trapDoor2;
-
-
 
     private void Awake()
     {
@@ -125,7 +113,7 @@ public class FirstPersonControls : MonoBehaviour
 
        // playerInput.Player.Restart.performed += ctx => Restart(); // Interact with switch\
 
-        playerInput.Player.QuitMenu.performed += ctx => QuitMenu(); // Interact with switch\
+        //playerInput.Player.QuitMenu.performed += ctx => QuitMenu(); // Interact with switch\
 
 
     }
@@ -264,13 +252,11 @@ public class FirstPersonControls : MonoBehaviour
                 {
                     doubleJumpUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
-                    trapDoor1.SetActive(false);
                 }
-                else if (objectName == "Key 2")
+                else if (objectName == "StarkKey")
                 {
                     gunCrownUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
-                    trapDoor2.SetActive(false);
                 }
                
             }
@@ -336,7 +322,6 @@ public class FirstPersonControls : MonoBehaviour
             {
                 gunCrownUnlocked = true;
                 Debug.Log("You just picked up " + objectName);
-                upgradeMenu.SetActive(true);
                 Destroy(hit.collider.gameObject);
             }
         }
@@ -360,22 +345,6 @@ public class FirstPersonControls : MonoBehaviour
 
 
     /// CUSTOM CODE/
-
-    public void Attack()
-    {
-        // Instantiate the sword slash at the srike point
-        GameObject slash = Instantiate(swordStrikePrefab, strikePoint.position, strikePoint.rotation);
-
-
-        // Get the Rigidbody component of the projectile and set its velocity
-        // Rigidbody rb = swordStrikePrefab.GetComponent<Rigidbody>();
-        //rb.velocity = strikePoint.forward * strikeSpeed;
-
-        // Destroy the projectile after 3 seconds
-        Destroy(slash, 0.1f);
-
-    }
-
     public void DoubleJump()
     {
         if (doubleJumpUnlocked == true)
@@ -424,11 +393,4 @@ public class FirstPersonControls : MonoBehaviour
         Time.timeScale = 1f; // Ensure the game is unpaused
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
-
-    public void QuitMenu()
-    {
-        upgradeMenu.SetActive(false);
-    }
-
-
 }
