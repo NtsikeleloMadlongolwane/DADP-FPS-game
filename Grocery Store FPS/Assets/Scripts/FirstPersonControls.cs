@@ -123,7 +123,7 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the interact input event
         playerInput.Player.Interact.performed += ctx => Interact(); // Interact with switch\
 
-        playerInput.Player.Restart.performed += ctx => Restart(); // Interact with switch\
+       // playerInput.Player.Restart.performed += ctx => Restart(); // Interact with switch\
 
         playerInput.Player.QuitMenu.performed += ctx => QuitMenu(); // Interact with switch\
 
