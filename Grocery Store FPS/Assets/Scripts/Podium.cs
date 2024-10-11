@@ -7,6 +7,7 @@ public class Podium : MonoBehaviour
     public GameObject LockedKey;
 
     public bool UnlockesDoor = true;
+    public string nameOfKey;
 
    // public GameObject doorBlockingCollider;
 
@@ -22,7 +23,7 @@ public class Podium : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         { // Check if the colliding object has a specific tag
-            if (collision.gameObject.tag == "PickUp")
+            if (collision.gameObject.name == nameOfKey)
             {
                 // Perform an action if the tag matches
                 Debug.Log("Collided with an object tagged as PickUp");
@@ -33,8 +34,7 @@ public class Podium : MonoBehaviour
             }
             else
             {
-                // Perform a different action if the tag does not match
-                Debug.Log("Collided with an object with a different tag");
+               
             }
         }
 
