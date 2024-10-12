@@ -218,6 +218,9 @@ public class FirstPersonControls : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
+
+            heldObject.GetComponent<RotateItems>().enabled = true; // set rotaetion on
+
             heldObject.transform.parent = null;
             // holdingGun = false;
         }
@@ -239,8 +242,10 @@ public class FirstPersonControls : MonoBehaviour
               heldObject = hit.collider.gameObject;
                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
+                heldObject.GetComponent<RotateItems>().enabled = false; // set rotaetion off
+
                 // Attach the object to the hold position
-               heldObject.transform.position = holdPosition.position;
+                heldObject.transform.position = holdPosition.position;
                 heldObject.transform.rotation = holdPosition.rotation;
                heldObject.transform.parent = holdPosition;
 
