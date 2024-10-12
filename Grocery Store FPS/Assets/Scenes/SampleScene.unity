@@ -4552,7 +4552,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247713626}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4622,7 +4622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b04e0c1a4c10614e9c3e4628c4b509c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 100
 --- !u!1 &253589022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3956640933551509014, guid: 4b955e36122120147b5c7ea54795e920,
@@ -50512,7 +50512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &2012376591
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57340,74 +57340,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e716bd764d8d84f47a053c48a9f86abb, type: 3}
---- !u!1001 &1614722192468896912
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4690378042938987202, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_Name
-      value: Final Crystal Blast (Projectile Script)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358229495043836024, guid: cfbf1f033c75504479abf1bc28e165c5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cfbf1f033c75504479abf1bc28e165c5, type: 3}
 --- !u!1001 &9108945514009035749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57506,7 +57438,6 @@ SceneRoots:
   - {fileID: 1582149379}
   - {fileID: 1960988855}
   - {fileID: 78602595}
-  - {fileID: 1614722192468896912}
   - {fileID: 2131427199}
   - {fileID: 789613873}
   - {fileID: 247713630}
