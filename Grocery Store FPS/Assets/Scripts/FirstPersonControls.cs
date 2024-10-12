@@ -221,7 +221,7 @@ public class FirstPersonControls : MonoBehaviour
 
             heldObject.GetComponent<RotateItems>().enabled = true; // set rotaetion on
 
-            heldObject.GetComponent<ParticleSystem>().Play();
+           // heldObject.GetComponent<ParticleSystem>().Play();
 
             heldObject.transform.parent = null;
             // holdingGun = false;
@@ -246,7 +246,7 @@ public class FirstPersonControls : MonoBehaviour
 
                 heldObject.GetComponent<RotateItems>().enabled = false; // set rotaetion off
 
-                heldObject.GetComponent<ParticleSystem>().Stop();
+               // heldObject.GetComponent<ParticleSystem>().Stop();
 
                 // Attach the object to the hold position
                 heldObject.transform.position = holdPosition.position;
