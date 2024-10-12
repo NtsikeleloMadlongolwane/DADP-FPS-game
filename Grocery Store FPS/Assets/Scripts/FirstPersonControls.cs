@@ -390,7 +390,7 @@ public class FirstPersonControls : MonoBehaviour
 
                 gunCrownUnlocked = false;
                 // Destroy the projectile after 3 seconds
-                Destroy(projectile1, 3f);
+                //Destroy(projectile1, 3f);
                 //Destroy(projectile2, 3f);
                 Invoke("ShootingCooldown", shootingCooldown);
 
