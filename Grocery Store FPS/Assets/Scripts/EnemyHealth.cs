@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 50;
     private int currentHealth;
 
+    public GameObject enemyDeathParticles;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -21,6 +23,7 @@ public class EnemyHealth : MonoBehaviour
         {
             // Enemy dies
             Debug.Log("Enemy is dead!");
+            Instantiate(enemyDeathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
