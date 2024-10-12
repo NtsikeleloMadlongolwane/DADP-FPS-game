@@ -67,6 +67,11 @@ public class FirstPersonControls : MonoBehaviour
     public int Ammunition;
     public float shootingCooldown = 0f;
 
+    [Header("Respawn")]
+    public bool isRespawning = false;
+    public Transform player;
+    public Transform respawnPoint;
+
     private void Awake()
     {
         // Get and store the CharacterController component attached to this GameObject
@@ -124,6 +129,8 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
+        
+        
     }
 
     public void Move()

@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
         {
             // Player dies
             Debug.Log("Player is dead!");
+            Time.timeScale = 0;
+
         }
         Debug.Log("Player got hit!");
     }
