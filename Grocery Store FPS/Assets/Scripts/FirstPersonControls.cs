@@ -55,6 +55,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("CUSTOM MECHANICS")]
 
     public string objectName; // this checks the objcets name and unlockes certain unpgrades that conrelates with the object
+    public MonoBehaviour spinning;
 
     [Header("DoubleJump")]
     public bool doubleJumpUnlocked = false;
@@ -218,6 +219,9 @@ public class FirstPersonControls : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
+            
+            spinning.enabled = true; // enable spinning
+
             heldObject.transform.parent = null;
             // holdingGun = false;
         }
@@ -238,9 +242,12 @@ public class FirstPersonControls : MonoBehaviour
                 // Pick up the object
               heldObject = hit.collider.gameObject;
                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                
+                spinning.enabled = false; // disable spinning
+
 
                 // Attach the object to the hold position
-               heldObject.transform.position = holdPosition.position;
+                heldObject.transform.position = holdPosition.position;
                 heldObject.transform.rotation = holdPosition.rotation;
                heldObject.transform.parent = holdPosition;
 

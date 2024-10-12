@@ -6,28 +6,40 @@ using UnityEngine;
 
 public class TrapDoor : MonoBehaviour
 {
-    private int count = 1;
-    public GameObject enemies;
-    public GameObject trapDoor;
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (count == 1)
-            {
-                trapDoor.SetActive(true);
-                Debug.Log("Trap door activated");
-                enemies.SetActive(true);
-                count = 0;
-            }
-            else
-            {
+    public Transform targetPosition;
+    public Transform initialPosition;
+    public float loweringSpeed = 2f;
+    public float raisingSpeed = 2f;
 
-            }
+    private bool lowering = false;
+    private bool raising = false;
+
+    void Update()
+    {
+        if (lowering)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, loweringSpeed * Time.deltaTime);
+        }
+        else if (raising)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, initialPosition.position, raisingSpeed * Time.deltaTime);
 
         }
-   
+    }
+
+    public void LowerTrapdoor()
+    {
+        lowering = true;
+        raising = false;
+    }
+
+
+    public void RaiseTrapdoor()
+    {
+        raising = true;
+        lowering = false;
     }
 }
-    
+
+
 
