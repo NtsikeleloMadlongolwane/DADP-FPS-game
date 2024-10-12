@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: TrapDoorTexture
-    second: {fileID: 2800000, guid: 629748a5df6875f4cb99150c958ab098, type: 3}
+    second: {fileID: 2800000, guid: 7f091f52d0826b3429f2033288c72375, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -23,7 +23,6 @@ public class TrapDoor : MonoBehaviour
         else if (raising)
         {
             transform.position = Vector3.MoveTowards(transform.position, initialPosition.position, raisingSpeed * Time.deltaTime);
-
         }
     }
 
@@ -33,13 +32,11 @@ public class TrapDoor : MonoBehaviour
         raising = false;
     }
 
-
     public void RaiseTrapdoor()
     {
         raising = true;
         lowering = false;
     }
 }
-
-
+    
 

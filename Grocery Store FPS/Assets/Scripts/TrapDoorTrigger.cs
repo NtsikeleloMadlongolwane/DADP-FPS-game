@@ -5,8 +5,8 @@ using UnityEngine;
 public class TrapDoorTrigger : MonoBehaviour
 {
     public TrapDoor trapdoor;
+    public GameObject[] destructibleObjects;
 
-    public GameObject[] EnemiesInRoom;
     private int counter = 0;
 
     void OnTriggerEnter(Collider other)
@@ -14,17 +14,20 @@ public class TrapDoorTrigger : MonoBehaviour
         counter++;
         if (other.CompareTag("Player"))
         {
-            if (counter == 1)
+            if(counter == 1)
             {
                 trapdoor.LowerTrapdoor();
             }
+           
         }
+
+        Debug.Log("Player Tiggered Trap door!");
     }
 
     void Update()
     {
         bool allDestroyed = true;
-        foreach (GameObject obj in EnemiesInRoom)
+        foreach (GameObject obj in destructibleObjects)
         {
             if (obj != null)
             {
@@ -37,6 +40,5 @@ public class TrapDoorTrigger : MonoBehaviour
         {
             trapdoor.RaiseTrapdoor();
         }
-
     }
 }
