@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
 
     public int maxHealth = 50;
     private int currentHealth;
+    public GameObject splash;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
         {
             // Enemy dies
             Debug.Log("Enemy is dead!");
+            Instantiate(splash, transform.position,Quaternion.identity);
             Destroy(gameObject);
         }
     }
