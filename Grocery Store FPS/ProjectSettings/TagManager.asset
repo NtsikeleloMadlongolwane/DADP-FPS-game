@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - KillBox
   - Upgrade
+  - Bullet
   layers:
   - Default
   - TransparentFX

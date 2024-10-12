@@ -8,40 +8,25 @@ public class PlayerHealth : MonoBehaviour
 
     // public Transform targetPoint;
 
-    public GameObject PauseScreen;
-
     public int maxHealth = 100;
     private int currentHealth;
-    
-    
-    private void Start()
+
+    void Start()
     {
         currentHealth = maxHealth;
-        Debug.Log(currentHealth);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= amount;
-        Debug.Log(currentHealth);
+        currentHealth -= damage;
+        Debug.Log("Player health: " + currentHealth);
         if (currentHealth <= 0)
         {
-            Die();
+            // Player dies
+            Debug.Log("Player is dead!");
         }
-        else
-        {
-            Debug.Log("It doest work yet");
-        }
+        Debug.Log("Player got hit!");
     }
 
-   
-    private void Die()
-    {
-        Debug.Log("Player died!");
-        // Add your death logic here
-        Time.timeScale = 0f;
-        PauseScreen.SetActive(true);
-    }
 
- 
 }

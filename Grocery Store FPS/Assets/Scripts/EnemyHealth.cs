@@ -5,35 +5,23 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
 
-    public int maxHealth = 100;
+    public int maxHealth = 50;
     private int currentHealth;
 
-
-    private void Start()
+    void Start()
     {
         currentHealth = maxHealth;
-        Debug.Log(currentHealth);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= amount;
-        Debug.Log(currentHealth);
+        currentHealth -= damage;
+        Debug.Log("Enemy health: " + currentHealth);
         if (currentHealth <= 0)
         {
-            Die();
+            // Enemy dies
+            Debug.Log("Enemy is dead!");
+            Destroy(gameObject);
         }
-        else
-        {
-            Debug.Log("It doest work yet");
-        }
-    }
-
-
-    private void Die()
-    {
-        Debug.Log("Player died!");
-        Destroy(gameObject);
-        // Add your death logic here
     }
 }
