@@ -95,8 +95,9 @@ public class FirstPersonControls : MonoBehaviour
     public TextMeshProUGUI objectDiscription;
     public TextMeshProUGUI objectHowToUse;
 
-
-
+    [Header("Animation")]
+    public bool isWalking;
+    public bool isJumping;
 
 
     private void Awake()
@@ -111,8 +112,8 @@ public class FirstPersonControls : MonoBehaviour
         Cursor.visible = true;
 
         //objectText = GetComponent<TextMeshPro>();
-       // objectDiscription = GetComponent<TextMeshPro>();
-       // objectHowToUse = GetComponent<TextMeshPro>();
+        // objectDiscription = GetComponent<TextMeshPro>();
+        // objectHowToUse = GetComponent<TextMeshPro>();
 
     }
     private void OnEnable()
@@ -158,7 +159,8 @@ public class FirstPersonControls : MonoBehaviour
     private void Update()
     {
         // Call Move and LookAround methods every frame to handle player movement and camera rotation
-        Move();
+        isWalking = Move();
+
         LookAround();
         ApplyGravity();
 
@@ -166,8 +168,9 @@ public class FirstPersonControls : MonoBehaviour
         CheckForPickUp();
     }
 
-    public void Move()
+    public bool Move()
     {
+       
         // Create a movement vector based on the input
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
 
@@ -188,6 +191,7 @@ public class FirstPersonControls : MonoBehaviour
 
         // Move the character controller based on the movement vector and speed
         characterController.Move(move * currentSpeed * Time.deltaTime);
+        return move != Vector3.zero;
     }
 
     public void LookAround()
@@ -218,13 +222,15 @@ public class FirstPersonControls : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime); // Apply the velocity to the character
     }
 
-    public void Jump()
+    public bool Jump()
     {
         if (characterController.isGrounded)
         {
             // Calculate the jump velocity
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             midAir = true;
+            isJumping = true;
+            return false;
         }
         else
         {
@@ -232,8 +238,12 @@ public class FirstPersonControls : MonoBehaviour
             {
                 DoubleJump();
                 midAir = false;
+                isJumping = true;
+                return false;
             }
         }
+        isJumping = false;
+        return true;
     }
 
     /* public void Shoot()
@@ -398,6 +408,7 @@ public class FirstPersonControls : MonoBehaviour
     /// CUSTOM CODE/
     public void DoubleJump()
     {
+
         if (doubleJumpUnlocked == true)
         {
             velocity.y = Mathf.Sqrt((jumpHeight * doubleJumpModifier) * -2f * gravity);
