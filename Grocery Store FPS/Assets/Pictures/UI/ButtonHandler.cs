@@ -54,7 +54,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+        SceneManager.LoadScene("MainMenu");
     }
     public void Die()
     {
@@ -75,7 +75,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene",LoadSceneMode.Additive);
+        SceneManager.LoadScene("SampleScene");
     }
 }
 
