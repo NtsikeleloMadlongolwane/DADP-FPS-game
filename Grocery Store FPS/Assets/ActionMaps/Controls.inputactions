@@ -265,7 +265,7 @@
                 {
                     "name": "",
                     "id": "ed41e902-3ee8-4644-ba28-adab9df8e474",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -276,7 +276,7 @@
                 {
                     "name": "",
                     "id": "0b617b3c-36e9-4340-ac04-dd0bc7d64f64",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -298,7 +298,7 @@
                 {
                     "name": "",
                     "id": "16bf3bff-092f-4d47-8bd9-d834d106e93a",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -342,7 +342,7 @@
                 {
                     "name": "",
                     "id": "337a2b46-27aa-430e-afa8-6e218d9fcb20",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -375,7 +375,18 @@
                 {
                     "name": "",
                     "id": "c9903673-2ab9-46f7-9bd6-6f0fa13fbfcc",
-                    "path": "<Keyboard>/h",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6643a9d8-54b8-4bed-bba1-01437e160b1e",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -397,7 +408,7 @@
                 {
                     "name": "",
                     "id": "cf58f884-9e1e-414e-84ed-8cadbbb71ce5",
-                    "path": "",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
