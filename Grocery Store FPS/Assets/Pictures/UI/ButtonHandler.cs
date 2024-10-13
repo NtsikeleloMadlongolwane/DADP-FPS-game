@@ -66,5 +66,10 @@ public class ButtonHandler : MonoBehaviour
         Cursor.visible = true;
 
     }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
 }
 
