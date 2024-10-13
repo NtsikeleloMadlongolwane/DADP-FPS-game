@@ -81,10 +81,11 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public GameObject[] cursor;
     public GameObject[] playerPNG;
-  
+    public bool gamePaused = false;
 
 
-    
+
+
 
     private void Awake()
     {
@@ -96,7 +97,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
-       
+
     }
     private void OnEnable()
     {
@@ -120,7 +121,7 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the shoot input event
         playerInput.Player.Shoot.performed += ctx => GunCrown(); // Call the Shoot method when shoot input is performed
 
-       // playerInput.Player.Attack.performed += ctx => Attack(); // call attack when attack is performed
+        // playerInput.Player.Attack.performed += ctx => Attack(); // call attack when attack is performed
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
@@ -133,7 +134,7 @@ public class FirstPersonControls : MonoBehaviour
 
         playerInput.Player.Heal.performed += ctx => Heal(); // Interact with switch\
 
-        //playerInput.Player.QuitMenu.performed += ctx => PausetMenu(); // Interact with switch\
+        playerInput.Player.PauseMenu.performed += ctx => PausetMenu(); // Interact with switch\
 
 
     }
@@ -144,8 +145,8 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
-        
-        
+
+
     }
 
     public void Move()
@@ -243,7 +244,7 @@ public class FirstPersonControls : MonoBehaviour
 
             heldObject.GetComponent<RotateItems>().enabled = true; // set rotaetion on
 
-           // heldObject.GetComponent<ParticleSystem>().Play();
+            // heldObject.GetComponent<ParticleSystem>().Play();
 
             heldObject.transform.parent = null;
             // holdingGun = false;
@@ -263,17 +264,17 @@ public class FirstPersonControls : MonoBehaviour
             if (hit.collider.CompareTag("PickUp"))
             {
                 // Pick up the object
-              heldObject = hit.collider.gameObject;
-               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
                 heldObject.GetComponent<RotateItems>().enabled = false; // set rotaetion off
 
-               // heldObject.GetComponent<ParticleSystem>().Stop();
+                // heldObject.GetComponent<ParticleSystem>().Stop();
 
                 // Attach the object to the hold position
                 heldObject.transform.position = holdPosition.position;
                 heldObject.transform.rotation = holdPosition.rotation;
-               heldObject.transform.parent = holdPosition;
+                heldObject.transform.parent = holdPosition;
 
                 //UDGRADE CHECK
                 objectName = heldObject.transform.name;
@@ -291,7 +292,7 @@ public class FirstPersonControls : MonoBehaviour
                     playerPNG[0].SetActive(false);
                     playerPNG[1].SetActive(true);
                 }
-               
+
             }
             else if (hit.collider.CompareTag("Gun"))
             {
@@ -429,14 +430,15 @@ public class FirstPersonControls : MonoBehaviour
 
     void Heal()
     {
-        if(firstAid > 0) {
+        if (firstAid > 0)
+        {
             playerHealing.Healing();
             playerHealing.TakeDamage(0);
             particleSystem.Play();
             firstAid--;
         }
 
-        if(firstAid == 1)
+        if (firstAid == 1)
         {
             heals[0].SetActive(true);
             heals[1].SetActive(false);
@@ -447,5 +449,21 @@ public class FirstPersonControls : MonoBehaviour
             heals[1].SetActive(false);
         }
 
+    }
+    void PausetMenu()
+    {
+        if (gamePaused == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+            gamePaused = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            gamePaused = false;
+            Time.timeScale = 1;
+        }
     }
 }

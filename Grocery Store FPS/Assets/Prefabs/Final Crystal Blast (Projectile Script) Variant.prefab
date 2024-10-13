@@ -71,12 +71,12 @@ PrefabInstance:
     - target: {fileID: 8950829945851383801, guid: d5c9f43fdc88fad42bec84fadfcb7f81,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8950829945851383801, guid: d5c9f43fdc88fad42bec84fadfcb7f81,
         type: 3}
       propertyPath: m_ProvidesContacts
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

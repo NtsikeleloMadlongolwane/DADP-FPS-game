@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public float knockbackForce = 10f;
     public float upwardForce = 5f;
 
-   /* private void OnCollisionEnter(Collision other)
+   private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -35,9 +35,18 @@ public class Projectile : MonoBehaviour
                 enemyHealth.TakeDamage(damageAmount);
                 Debug.Log("Player damaged by hurt box!");
             }
-
+            //Destroy(this.gameObject);
         }
-    }*/
+
+        else if(other.gameObject.CompareTag("Wall"))
+        { 
+         
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     void OnTriggerEnter(Collider hitInfo)
         {
             // Add logic for what happens when the bullet hits something
@@ -72,10 +81,15 @@ public class Projectile : MonoBehaviour
             {
                 enemyHealth.TakeDamage(damageAmount);
                 Debug.Log("Player damaged by hurt box!");
+                Destroy(gameObject);
             }
-
         }
-        Destroy(gameObject);
+            
+        else if (hitInfo.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
+  
+    }
    
 }

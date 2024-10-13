@@ -7,11 +7,12 @@ public class SealHealth : MonoBehaviour
 
     public int maxHealth = 50;
     private int currentHealth;
-    public GameObject splash;
+    public ParticleSystem splash;
 
     void Start()
     {
         currentHealth = maxHealth;
+        
     }
 
     void OnTriggerEnter(Collider collision)
@@ -19,7 +20,9 @@ public class SealHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             // Deal damage to the enemy
+
             Instantiate(splash, transform.position, Quaternion.identity);
+
             TakeDamage(10); // Adjust the damage value as needed
 
 
