@@ -72,6 +72,20 @@ public class FirstPersonControls : MonoBehaviour
     public Transform player;
     public Transform respawnPoint;
 
+    [Header("UI")]
+    public GameObject[] health;
+    public GameObject[] heals;
+    public int firstAid = 2;
+    public PlayerHealth playerHealing;
+    public ParticleSystem particleSystem;
+    [Space(5)]
+    public GameObject[] cursor;
+    public GameObject[] playerPNG;
+  
+
+
+    
+
     private void Awake()
     {
         // Get and store the CharacterController component attached to this GameObject
@@ -82,6 +96,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
+       
     }
     private void OnEnable()
     {
@@ -116,9 +131,9 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the interact input event
         playerInput.Player.Interact.performed += ctx => Interact(); // Interact with switch\
 
-       // playerInput.Player.Restart.performed += ctx => Restart(); // Interact with switch\
+        playerInput.Player.Heal.performed += ctx => Heal(); // Interact with switch\
 
-        //playerInput.Player.QuitMenu.performed += ctx => QuitMenu(); // Interact with switch\
+        //playerInput.Player.QuitMenu.performed += ctx => PausetMenu(); // Interact with switch\
 
 
     }
@@ -273,6 +288,8 @@ public class FirstPersonControls : MonoBehaviour
                 {
                     gunCrownUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
+                    playerPNG[0].SetActive(false);
+                    playerPNG[1].SetActive(true);
                 }
                
             }
@@ -408,5 +425,27 @@ public class FirstPersonControls : MonoBehaviour
     {
         Time.timeScale = 1f; // Ensure the game is unpaused
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+    }
+
+    void Heal()
+    {
+        if(firstAid > 0) {
+            playerHealing.Healing();
+            playerHealing.TakeDamage(0);
+            particleSystem.Play();
+            firstAid--;
+        }
+
+        if(firstAid == 1)
+        {
+            heals[0].SetActive(true);
+            heals[1].SetActive(false);
+        }
+        else
+        {
+            heals[0].SetActive(false);
+            heals[1].SetActive(false);
+        }
+
     }
 }
