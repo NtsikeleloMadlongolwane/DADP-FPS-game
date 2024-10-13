@@ -14,6 +14,7 @@ TagManager:
   - KillBox
   - Upgrade
   - Bullet
+  - LockedDoor
   layers:
   - Default
   - TransparentFX

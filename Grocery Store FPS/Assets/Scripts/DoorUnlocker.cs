@@ -31,7 +31,6 @@ public class DoorUnlocker : MonoBehaviour
         {
 
         }
-        Debug.Log(keys.Count);
     }
 
 }

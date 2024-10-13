@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     // public Transform targetPoint;
     [Header("UI")]
     public GameObject[] health;
+    public ButtonHandler buttonHandler;
 
 
     public int maxHealth = 50;
@@ -17,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentHealth);
     }
     void Start()
     {
@@ -31,12 +31,11 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player health: " + currentHealth);
         if (currentHealth <= 0)
         {
-            // Player dies
-            Debug.Log("Player is dead!");
-            Time.timeScale = 0;
+            buttonHandler.Die();
+             // Player dies
+             Time.timeScale = 0;
 
         }
-        Debug.Log("Player got hit!");
 
 
         if (currentHealth == 50)

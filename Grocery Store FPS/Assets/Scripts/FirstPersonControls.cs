@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -82,7 +83,14 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject[] cursor;
     public GameObject[] playerPNG;
     public bool gamePaused = false;
-
+    public ButtonHandler buttonHandler;
+    [Space(5)]
+    [Header("Intactacting with objects")]
+    public float rayDistance = 1f; // Distance the ray will cast
+    public string objectNameText;
+    public TextMeshProUGUI objectText;
+    public TextMeshProUGUI objectDiscription;
+    public TextMeshProUGUI objectHowToUse;
 
 
 
@@ -97,6 +105,10 @@ public class FirstPersonControls : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
+
+        //objectText = GetComponent<TextMeshPro>();
+       // objectDiscription = GetComponent<TextMeshPro>();
+       // objectHowToUse = GetComponent<TextMeshPro>();
 
     }
     private void OnEnable()
@@ -146,7 +158,73 @@ public class FirstPersonControls : MonoBehaviour
         LookAround();
         ApplyGravity();
 
+        //UI
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
 
+        if (Physics.Raycast(ray, out hit, rayDistance))
+        {
+            if (Physics.Raycast(ray, out hit, rayDistance))
+
+            {
+                if (hit.collider.CompareTag("PickUp"))
+                {
+                    string objectName = hit.collider.gameObject.name;
+                    string objectTag = hit.collider.gameObject.tag;
+                    objectHowToUse.text = "PRESS [E] TO PICK UP";
+
+                    if (objectName == "StarkKey")
+                    {
+                        objectText.text = "CRYSTAL KEY";
+                        objectDiscription.text = "KEY THAT OPENS DOOR TO DOUNGOEN BOSS";
+                    }
+                    else if (objectName == "BlackKey")
+                    {
+                        objectText.text = "VOID KEY";
+                        objectDiscription.text = "KEY THAT OPENS DOOR TO DOUNGOEN BOSS";
+                    }
+
+
+                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
+                }
+                else if (hit.collider.CompareTag("Door"))
+                {
+                    string objectName = hit.collider.gameObject.name;
+                    string objectTag = hit.collider.gameObject.tag;
+
+                    objectText.text = "DOOR";
+                    objectDiscription.text = "";
+                    objectHowToUse.text = "PRESS [F] TO OPEN";
+
+                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
+                }
+                else if (hit.collider.CompareTag("LockedDoor"))
+                {
+                    string objectName = hit.collider.gameObject.name;
+                    string objectTag = hit.collider.gameObject.tag;
+                    objectHowToUse.text = "";
+
+                    objectText.text = "LOCKED DOOR";
+
+                    if (objectName == "Elevator Lock")
+                    {
+                        objectDiscription.text = "PLACE BOTH KEYS ON THE PODIUMS";
+                    }
+                    else if (objectName == "EnemyRoomLock")
+                    {
+                        objectDiscription.text = "PLACE CRYSTAL KEY ON THE CORRECT PODIUM";
+                    }
+
+                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
+                }
+            }
+            else
+            {
+                objectText.text = "";
+                objectHowToUse.text = "";
+                objectDiscription.text = "";
+            }
+        } 
     }
 
     public void Move()
@@ -454,14 +532,18 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (gamePaused == false)
         {
+            buttonHandler.PauseMenu();
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             gamePaused = true;
             Time.timeScale = 0;
         }
         else
         {
+            buttonHandler.Resume();
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             gamePaused = false;
             Time.timeScale = 1;
         }
