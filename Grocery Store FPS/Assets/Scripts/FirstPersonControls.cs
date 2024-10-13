@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -88,9 +89,12 @@ public class FirstPersonControls : MonoBehaviour
     [Header("Intactacting with objects")]
     public float rayDistance = 1f; // Distance the ray will cast
     public string objectNameText;
+
+    public GameObject actionUI;
     public TextMeshProUGUI objectText;
     public TextMeshProUGUI objectDiscription;
     public TextMeshProUGUI objectHowToUse;
+
 
 
 
@@ -159,72 +163,7 @@ public class FirstPersonControls : MonoBehaviour
         ApplyGravity();
 
         //UI
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, rayDistance))
-        {
-            if (Physics.Raycast(ray, out hit, rayDistance))
-
-            {
-                if (hit.collider.CompareTag("PickUp"))
-                {
-                    string objectName = hit.collider.gameObject.name;
-                    string objectTag = hit.collider.gameObject.tag;
-                    objectHowToUse.text = "PRESS [E] TO PICK UP";
-
-                    if (objectName == "StarkKey")
-                    {
-                        objectText.text = "CRYSTAL KEY";
-                        objectDiscription.text = "KEY THAT OPENS DOOR TO DOUNGOEN BOSS";
-                    }
-                    else if (objectName == "BlackKey")
-                    {
-                        objectText.text = "VOID KEY";
-                        objectDiscription.text = "KEY THAT OPENS DOOR TO DOUNGOEN BOSS";
-                    }
-
-
-                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
-                }
-                else if (hit.collider.CompareTag("Door"))
-                {
-                    string objectName = hit.collider.gameObject.name;
-                    string objectTag = hit.collider.gameObject.tag;
-
-                    objectText.text = "DOOR";
-                    objectDiscription.text = "";
-                    objectHowToUse.text = "PRESS [F] TO OPEN";
-
-                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
-                }
-                else if (hit.collider.CompareTag("LockedDoor"))
-                {
-                    string objectName = hit.collider.gameObject.name;
-                    string objectTag = hit.collider.gameObject.tag;
-                    objectHowToUse.text = "";
-
-                    objectText.text = "LOCKED DOOR";
-
-                    if (objectName == "Elevator Lock")
-                    {
-                        objectDiscription.text = "PLACE BOTH KEYS ON THE PODIUMS";
-                    }
-                    else if (objectName == "EnemyRoomLock")
-                    {
-                        objectDiscription.text = "PLACE CRYSTAL KEY ON THE CORRECT PODIUM";
-                    }
-
-                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
-                }
-            }
-            else
-            {
-                objectText.text = "";
-                objectHowToUse.text = "";
-                objectDiscription.text = "";
-            }
-        } 
+        CheckForPickUp();
     }
 
     public void Move()
@@ -546,6 +485,80 @@ public class FirstPersonControls : MonoBehaviour
             Cursor.visible = false;
             gamePaused = false;
             Time.timeScale = 1;
+        }
+    }
+
+    private void CheckForPickUp()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, rayDistance))
+        {
+            if (Physics.Raycast(ray, out hit, rayDistance))
+
+            {
+                if (hit.collider.CompareTag("PickUp"))
+                {
+                    actionUI.SetActive(true);
+                    string objectName = hit.collider.gameObject.name;
+                    string objectTag = hit.collider.gameObject.tag;
+                    objectHowToUse.text = "PRESS [E] TO PICK UP";
+
+                    if (objectName == "StarkKey")
+                    {
+                        objectText.text = "CRYSTAL KEY";
+                        objectDiscription.text = "KEY THAT OPENS DOOR TO DOUNGOEN BOSS";
+                    }
+                    else if (objectName == "BlackKey")
+                    {
+                        objectText.text = "VOID KEY";
+                        objectDiscription.text = "KEY THAT OPENS DOOR TO DOUNGOEN BOSS";
+                    }
+
+
+                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
+                }
+                else if (hit.collider.CompareTag("Door"))
+                {
+                    actionUI.SetActive(true);
+                    string objectName = hit.collider.gameObject.name;
+                    string objectTag = hit.collider.gameObject.tag;
+
+                    objectText.text = "DOOR";
+                    objectDiscription.text = "";
+                    objectHowToUse.text = "PRESS [F] TO OPEN";
+
+                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
+                }
+                else if (hit.collider.CompareTag("LockedDoor"))
+                {
+                    actionUI.SetActive(true);
+                    string objectName = hit.collider.gameObject.name;
+                    string objectTag = hit.collider.gameObject.tag;
+                    objectHowToUse.text = "";
+
+                    objectText.text = "LOCKED DOOR";
+
+                    if (objectName == "Elevator Lock")
+                    {
+                        objectDiscription.text = "PLACE BOTH KEYS ON THE PODIUMS";
+                    }
+                    else if (objectName == "EnemyRoomLock")
+                    {
+                        objectDiscription.text = "PLACE CRYSTAL KEY ON THE CORRECT PODIUM";
+                    }
+
+                    Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
+                }
+            }
+            else
+            {
+                actionUI.SetActive(false);
+                objectText.text = "";
+                objectHowToUse.text = "";
+                objectDiscription.text = "";
+            }
         }
     }
 }

@@ -39,6 +39,8 @@ public class ButtonHandler : MonoBehaviour
 
     public void RestartGame()
     {
+        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1.0f;
     }
 
     public void Back()
@@ -50,6 +52,10 @@ public class ButtonHandler : MonoBehaviour
         Application.Quit();
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+    }
     public void Die()
     {
          loseState.SetActive(true);
@@ -69,7 +75,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SampleScene",LoadSceneMode.Additive);
     }
 }
 
