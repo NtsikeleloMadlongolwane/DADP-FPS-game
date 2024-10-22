@@ -99,6 +99,13 @@ public class FirstPersonControls : MonoBehaviour
     public bool isWalking;
     public bool isJumping;
 
+    [Header("Dash Mechanin")]
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.2f;
+    private bool isDashing = false;
+    private bool canDash = true;
+    private bool hasAirDashed = false;
+    private Vector3 dashDirection;
 
     private void Awake()
     {
@@ -108,6 +115,7 @@ public class FirstPersonControls : MonoBehaviour
 
     public void Start()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
 
@@ -153,6 +161,9 @@ public class FirstPersonControls : MonoBehaviour
 
         playerInput.Player.PauseMenu.performed += ctx => PausetMenu(); // Interact with switch\
 
+        playerInput.Player.Dash.performed += ctx => Dash(); // call dash method
+
+
 
     }
 
@@ -166,8 +177,49 @@ public class FirstPersonControls : MonoBehaviour
 
         //UI
         CheckForPickUp();
+
+        // Dash Mechanic
+
+        if (isDashing == true )
+        {
+            characterController.Move(dashDirection * dashSpeed * Time.deltaTime);
+        }
+
+        if(characterController.isGrounded && !isDashing)
+        {
+            canDash = true;
+            hasAirDashed = false;
+        }
     }
 
+    // DASH MECHANIC ///
+    public void Dash()
+    {
+        if((canDash && characterController.isGrounded) || (!hasAirDashed && !characterController.isGrounded) ) 
+        {
+            dashDirection = transform.forward;
+            isDashing = true;
+            canDash = false;
+            if(!characterController.isGrounded)
+            {
+                hasAirDashed = true;
+            }
+            Invoke("StopDash", dashDuration);
+        }
+    }
+
+    void StopDash()
+    {
+        isDashing = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isDashing == true)
+        {
+           isDashing = false;
+        }
+    }
+    // DASH MECHANIC ///
     public bool Move()
     {
        
