@@ -69,11 +69,6 @@ public class FirstPersonControls : MonoBehaviour
     public int Ammunition;
     public float shootingCooldown = 0f;
 
-    [Header("Respawn")]
-    public bool isRespawning = false;
-    public Transform player;
-    public Transform respawnPoint;
-
     [Header("UI")]
     public GameObject[] health;
     public GameObject[] heals;
@@ -86,6 +81,7 @@ public class FirstPersonControls : MonoBehaviour
     public bool gamePaused = false;
     public ButtonHandler buttonHandler;
     [Space(5)]
+
     [Header("Intactacting with objects")]
     public float rayDistance = 1f; // Distance the ray will cast
     public string objectNameText;
@@ -106,6 +102,18 @@ public class FirstPersonControls : MonoBehaviour
     private bool canDash = true;
     private bool hasAirDashed = false;
     private Vector3 dashDirection;
+
+    [Header("Attack Mechanic")]
+    public GameObject slashPrefab1;
+    public GameObject slashPrefab2;
+    public Transform slashSpawnPoint;
+    public float attckDuration = 0.2f;
+    public float coolDownDuration =1f;
+    public int attackDamage = 10;
+
+    public bool canAttack = false;
+    private bool isCoolDown;
+    private bool isAttacking;
 
     private void Awake()
     {
@@ -146,7 +154,7 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the shoot input event
         playerInput.Player.Shoot.performed += ctx => GunCrown(); // Call the Shoot method when shoot input is performed
 
-        // playerInput.Player.Attack.performed += ctx => Attack(); // call attack when attack is performed
+        playerInput.Player.Attack.performed += ctx => PerformAttack(); // call attack when attack is performed
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
@@ -170,8 +178,10 @@ public class FirstPersonControls : MonoBehaviour
     private void Update()
     {
         // Call Move and LookAround methods every frame to handle player movement and camera rotation
-        isWalking = Move();
-
+        if (!isAttacking)
+        {
+            isWalking = Move();
+        }
         LookAround();
         ApplyGravity();
 
@@ -190,6 +200,36 @@ public class FirstPersonControls : MonoBehaviour
             canDash = true;
             hasAirDashed = false;
         }
+        // Dash mechanic ends here
+
+
+    }
+
+    public void PerformAttack()
+    {
+        if (!isCoolDown && canAttack)
+        {
+            StartCoroutine(Attack());
+        }           
+    }
+    
+    IEnumerator Attack()
+    {
+        isCoolDown = true;
+        isAttacking = true;
+
+        //create the slash
+        GameObject slash = Instantiate(slashPrefab1, slashSpawnPoint.position, slashSpawnPoint.rotation);
+        slash.SetActive(true);
+
+        yield return new WaitForSeconds(attckDuration);
+        //destroy slash
+        Destroy(slash);
+
+        //attack cooldown
+        yield return new WaitForSeconds(attckDuration);
+        isCoolDown = false;
+        isAttacking = false;
     }
 
     // DASH MECHANIC ///
@@ -491,6 +531,8 @@ public class FirstPersonControls : MonoBehaviour
                 //Destroy(projectile1, 3f);
                 //Destroy(projectile2, 3f);
                 Invoke("ShootingCooldown", shootingCooldown);
+
+
 
             }
 
