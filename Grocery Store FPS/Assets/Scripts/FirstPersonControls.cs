@@ -337,23 +337,6 @@ public class FirstPersonControls : MonoBehaviour
         isJumping = false;
         return true;
     }
-
-    /* public void Shoot()
-     {
-         if (holdingGun == true)
-         {
-             // Instantiate the projectile at the fire point
-             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-
-             // Get the Rigidbody component of the projectile and set its velocity
-             Rigidbody rb = projectile.GetComponent<Rigidbody>();
-             rb.velocity = firePoint.forward * projectileSpeed;
-
-             // Destroy the projectile after 3 seconds
-             Destroy(projectile, 3f);
-         }
-     }*/
-
     public void PickUpObject()
     {
         // Check if we are already holding an object
@@ -522,20 +505,12 @@ public class FirstPersonControls : MonoBehaviour
                 // Get the Rigidbody component of the projectile and set its velocity
                 Rigidbody rb = projectile1.GetComponent<Rigidbody>();
                 rb.velocity = RightFirePoint.forward * projectileSpeed;
-
-                // Rigidbody rb2 = projectile2.GetComponent<Rigidbody>();
-                // rb2.velocity = LeftFirePoint.forward * projectileSpeed;
-
+ 
                 gunCrownUnlocked = false;
                 // Destroy the projectile after 3 seconds
-                //Destroy(projectile1, 3f);
-                //Destroy(projectile2, 3f);
+                Destroy(projectile1, 3f);
                 Invoke("ShootingCooldown", shootingCooldown);
-
-
-
             }
-
         }
     }
     void ShootingCooldown()
