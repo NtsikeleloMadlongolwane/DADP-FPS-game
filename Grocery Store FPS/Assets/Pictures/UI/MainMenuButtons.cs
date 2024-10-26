@@ -9,7 +9,8 @@ public class MainMenuButtons : MonoBehaviour
     public Image[] potions = new Image[3];
     public Button moveLeftButton;
     public Button moveRightButton;
-    public Button[] potionButtons = new Button[5];
+    public Button[] potionButtons = new Button[3];
+    public int centerOption = 1;
 
     private int[] indices = new int[3];
 
@@ -38,12 +39,12 @@ public class MainMenuButtons : MonoBehaviour
         {
             potions[indices[i]].rectTransform.localPosition = positions[i];
             potionButtons[indices[i]].GetComponent<RectTransform>().localPosition = positions[i]; // Correctly get RectTransform
-            potions[indices[i]].rectTransform.localScale = (i == 1)
+            potions[indices[i]].rectTransform.localScale = (i == centerOption)
                 ? new Vector3(1f, 1f, 1f)
                 : new Vector3(.5f, .5f, 1f);
 
             // Enable or disable buttons based on their position
-            potionButtons[indices[i]].gameObject.SetActive(i == 1);
+            potionButtons[indices[i]].gameObject.SetActive(i == centerOption);
         }
     }
 
