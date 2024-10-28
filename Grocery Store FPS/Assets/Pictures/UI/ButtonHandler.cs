@@ -58,10 +58,10 @@ public class ButtonHandler : MonoBehaviour
     }
     public void Die()
     {
-         loseState.SetActive(true);
        Time.timeScale = 1.0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        loseState.SetActive(true);
 
     }
     public void Win()

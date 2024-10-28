@@ -33,7 +33,7 @@ public class PauseMenuButtons : MonoBehaviour
         }
     }
 
-    void SetPotionPositions()
+    /*void SetPotionPositions()
     {
         for (int i = 0; i < potions.Length; i++)
         {
@@ -44,6 +44,22 @@ public class PauseMenuButtons : MonoBehaviour
                 : new Vector3(0.5f, 0.5f, 1f);
 
             // Enable or disable buttons based on their position
+            potionButtons[indices[i]].gameObject.SetActive(i == centerOption);
+        }
+    }*/
+
+    void SetPotionPositions()
+    {
+        for (int i = 0; i < potions.Length; i++)
+        {
+            RectTransform potionTransform = potions[indices[i]].rectTransform;
+            RectTransform buttonTransform = potionButtons[indices[i]].GetComponent<RectTransform>();
+
+            potionTransform.localPosition = positions[i];
+            buttonTransform.localPosition = Vector3.zero; // Center button inside parent
+
+            potionTransform.localScale = (i == centerOption) ? new Vector3(1f, 1f, 1f) : new Vector3(0.5f, 0.5f, 1f);
+
             potionButtons[indices[i]].gameObject.SetActive(i == centerOption);
         }
     }

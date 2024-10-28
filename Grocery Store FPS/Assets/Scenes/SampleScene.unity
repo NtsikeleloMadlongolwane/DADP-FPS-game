@@ -2861,7 +2861,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -3635,7 +3635,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 101679733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: RestartYes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &101679733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5347,7 +5359,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -6618,7 +6630,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.45637, y: 0.78618, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1627797995}
   m_Father: {fileID: 701603981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6669,7 +6682,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 256087509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: InGameControlsBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &256087509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12251,7 +12276,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
@@ -12472,7 +12497,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -14607,7 +14632,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 648828860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: MainMenuYes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &648828860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15427,7 +15464,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 256087507}
-  - {fileID: 1627797995}
   m_Father: {fileID: 1251953826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -15571,7 +15607,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 704405619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: MainMenuBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &704405619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20581,8 +20629,8 @@ MonoBehaviour:
   - {fileID: 1024198398}
   - {fileID: 308093005}
   - {fileID: 12820208}
-  moveLeftButton: {fileID: 73063368}
-  moveRightButton: {fileID: 1861583934}
+  moveLeftButton: {fileID: 1861583934}
+  moveRightButton: {fileID: 73063368}
   potionButtons:
   - {fileID: 949348300}
   - {fileID: 1185425692}
@@ -21353,7 +21401,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 949348301}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &949348301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21361,7 +21421,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949348298}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -21374,8 +21434,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2eb7c9c157913f5449ac8339198c5ae7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -22880,7 +22940,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: ControlsMenu
         m_Mode: 1
@@ -28392,7 +28452,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -35331,7 +35391,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1185425693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: Continue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1185425693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35339,7 +35411,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185425690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -35352,8 +35424,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2eb7c9c157913f5449ac8339198c5ae7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -42220,8 +42292,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 607988441}
   - {fileID: 1024198397}
+  - {fileID: 607988441}
   - {fileID: 308093004}
   - {fileID: 12820207}
   - {fileID: 73063367}
@@ -42572,7 +42644,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1288999038}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1288999038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42580,7 +42664,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288999035}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -42593,8 +42677,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2eb7c9c157913f5449ac8339198c5ae7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -56078,7 +56162,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1610332809}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: InGameControls
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1610332809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56086,7 +56182,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610332806}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -56099,8 +56195,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2eb7c9c157913f5449ac8339198c5ae7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -56520,15 +56616,15 @@ RectTransform:
   m_GameObject: {fileID: 1627797994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.1912045, y: 1.2719734, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 701603981}
+  m_Father: {fileID: 256087507}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -96.699936}
-  m_SizeDelta: {x: 60, y: -70}
+  m_AnchoredPosition: {x: 0, y: 0.00011444092}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1627797996
 MonoBehaviour:
@@ -56614,7 +56710,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 56.775585, y: 7.148492, z: 58.08276, w: 8.986448}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -59403,7 +59499,7 @@ MonoBehaviour:
   - {fileID: 1364190378}
   - {fileID: 1331580900}
   gamePaused: 0
-  buttonHandler: {fileID: 2048993580}
+  UIbuttonManager: {fileID: 2048993581}
   rayDistance: 2
   objectNameText: 
   actionUI: {fileID: 971008944}
@@ -59535,7 +59631,7 @@ MonoBehaviour:
   - {fileID: 63665267}
   - {fileID: 1018740447}
   - {fileID: 906884940}
-  buttonHandler: {fileID: 2048993580}
+  buttonHandler: {fileID: 0}
   maxHealth: 50
 --- !u!1 &1773645547
 GameObject:
@@ -59942,7 +60038,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: Back
         m_Mode: 1
@@ -60806,7 +60902,7 @@ MonoBehaviour:
   spikewavescript: {fileID: 387076619}
   seal: {fileID: 617321972}
   boss: {fileID: 531529464}
-  ButtonHandler: {fileID: 2048993580}
+  ButtonHandler: {fileID: 0}
   roof: {fileID: 566629102}
 --- !u!1 &1837569447
 GameObject:
@@ -65034,7 +65130,7 @@ GameObject:
   - component: {fileID: 2048993579}
   - component: {fileID: 2048993578}
   - component: {fileID: 2048993577}
-  - component: {fileID: 2048993580}
+  - component: {fileID: 2048993581}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -65126,7 +65222,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2048993580
+--- !u!114 &2048993581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65135,15 +65231,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2048993575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b213ff5917315d4b9ccfb32cb63f753, type: 3}
+  m_Script: {fileID: 11500000, guid: b00e433380550164aa0ea17060096627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firstPersonControls: {fileID: 1772090007}
-  pauseMenu: {fileID: 1731303871}
-  controlsMenu: {fileID: 759708222}
-  HUD: {fileID: 1195212619}
-  winState: {fileID: 1635521331}
-  loseState: {fileID: 1216845302}
+  mainMenu: {fileID: 0}
+  controls_main_Menu: {fileID: 0}
+  selectLevelMenu: {fileID: 0}
+  attention_Level: {fileID: 0}
+  attention_Quit: {fileID: 0}
+  pauseMenu: {fileID: 895258712}
+  controls_pause_Menu: {fileID: 1251953825}
+  winMenu: {fileID: 1081596392}
+  loseMenu: {fileID: 1541170151}
+  attention_mainMenu: {fileID: 28033177}
+  attention_restart: {fileID: 905321732}
 --- !u!4 &2054368597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1051022397785547742, guid: d7a90e1e399494b41b37983a0186177e,
@@ -70477,7 +70579,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048993580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -71257,7 +71359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2128651537}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2048993581}
+        m_TargetAssemblyTypeName: UIButtonManager, Assembly-CSharp
+        m_MethodName: RestartNo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2128651537
 MonoBehaviour:
   m_ObjectHideFlags: 0

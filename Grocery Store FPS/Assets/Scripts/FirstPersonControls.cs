@@ -79,7 +79,7 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject[] cursor;
     public GameObject[] playerPNG;
     public bool gamePaused = false;
-    public ButtonHandler buttonHandler;
+    public UIButtonManager UIbuttonManager;
     [Space(5)]
 
     [Header("Intactacting with objects")]
@@ -160,14 +160,14 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
 
         // Subscribe to the crouch input event
-        playerInput.Player.Crouch.performed += ctx => ToggleCrouch(); // Call the ToggleCrouch method when crouch input is performed
+        //playerInput.Player.Crouch.performed += ctx => ToggleCrouch(); // Call the ToggleCrouch method when crouch input is performed
 
         // Subscribe to the interact input event
         playerInput.Player.Interact.performed += ctx => Interact(); // Interact with switch\
 
         playerInput.Player.Heal.performed += ctx => Heal(); // Interact with switch\
 
-        playerInput.Player.PauseMenu.performed += ctx => PausetMenu(); // Interact with switch\
+        playerInput.Player.PauseMenu.performed += ctx => PauseGameMenu(); // Interact with switch\
 
         playerInput.Player.Dash.performed += ctx => Dash(); // call dash method
 
@@ -412,22 +412,6 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
-    public void ToggleCrouch()
-    {
-        if (isCrouching)
-        {
-            // Stand up
-            characterController.height = standingHeight;
-            isCrouching = false;
-        }
-        else
-        {
-            // Crouch down
-            characterController.height = crouchHeight;
-            isCrouching = true;
-        }
-    }
-
     public void Interact()
     {
         // Perform a raycast to detect the lightswitch
@@ -547,25 +531,22 @@ public class FirstPersonControls : MonoBehaviour
         }
 
     }
-    void PausetMenu()
+    public void PauseGameMenu()
     {
         if (gamePaused == false)
         {
-            buttonHandler.PauseMenu();
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
             gamePaused = true;
             Time.timeScale = 0;
+            UIbuttonManager.PauseGame();
+            Cursor.lockState = CursorLockMode.None;
         }
-        else
+        else 
         {
-            buttonHandler.Resume();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             gamePaused = false;
             Time.timeScale = 1;
+            UIbuttonManager.Continue();
         }
+    
     }
 
     private void CheckForPickUp()
