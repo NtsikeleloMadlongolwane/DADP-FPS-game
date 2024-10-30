@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     public GameObject[] health;
     public ButtonHandler buttonHandler;
 
+    public ScreenShake screenShake;
+    private bool isTakingDamage = false;
 
     public int maxHealth = 50;
     private int currentHealth;
@@ -23,68 +25,72 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         TakeDamage(0);
+        screenShake = Camera.main.GetComponent<ScreenShake>();
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Player health: " + currentHealth);
-        if (currentHealth <= 0)
+        if (!isTakingDamage)
         {
-            buttonHandler.Die();
-             // Player dies
-             Time.timeScale = 0;
+            currentHealth -= damage;
+            Debug.Log("Player health: " + currentHealth);
+            if (currentHealth <= 0)
+            {
+                buttonHandler.Die();
+                // Player dies
+                Time.timeScale = 0;
 
-        }
+            }
 
-
-        if (currentHealth == 50)
-        {
-            health[0].SetActive(true);
-            health[1].SetActive(true);
-            health[2].SetActive(true);
-            health[3].SetActive(true);
-            health[4].SetActive(true);
-        }
-        else if (currentHealth == 40)
-        {
-            health[0].SetActive(true);
-            health[1].SetActive(true);
-            health[2].SetActive(true);
-            health[3].SetActive(true);
-            health[4].SetActive(false);
-        }
-        else if (currentHealth == 30)
-        {
-            health[0].SetActive(true);
-            health[1].SetActive(true);
-            health[2].SetActive(true);
-            health[3].SetActive(false);
-            health[4].SetActive(false);
-        }
-        else if (currentHealth == 20)
-        {
-            health[0].SetActive(true);
-            health[1].SetActive(true);
-            health[2].SetActive(false);
-            health[3].SetActive(false);
-            health[4].SetActive(false);
-        }
-        else if (currentHealth == 10)
-        {
-            health[0].SetActive(true);
-            health[1].SetActive(false);
-            health[2].SetActive(false);
-            health[3].SetActive(false);
-            health[4].SetActive(false);
-        }
-        else if (currentHealth == 0)
-        {
-            health[0].SetActive(false);
-            health[1].SetActive(false);
-            health[2].SetActive(false);
-            health[3].SetActive(false);
-            health[4].SetActive(false);
+            if (currentHealth == 50)
+            {
+                health[0].SetActive(true);
+                health[1].SetActive(true);
+                health[2].SetActive(true);
+                health[3].SetActive(true);
+                health[4].SetActive(true);
+            }
+            else if (currentHealth == 40)
+            {
+                health[0].SetActive(true);
+                health[1].SetActive(true);
+                health[2].SetActive(true);
+                health[3].SetActive(true);
+                health[4].SetActive(false);
+            }
+            else if (currentHealth == 30)
+            {
+                health[0].SetActive(true);
+                health[1].SetActive(true);
+                health[2].SetActive(true);
+                health[3].SetActive(false);
+                health[4].SetActive(false);
+            }
+            else if (currentHealth == 20)
+            {
+                health[0].SetActive(true);
+                health[1].SetActive(true);
+                health[2].SetActive(false);
+                health[3].SetActive(false);
+                health[4].SetActive(false);
+            }
+            else if (currentHealth == 10)
+            {
+                health[0].SetActive(true);
+                health[1].SetActive(false);
+                health[2].SetActive(false);
+                health[3].SetActive(false);
+                health[4].SetActive(false);
+            }
+            else if (currentHealth == 0)
+            {
+                health[0].SetActive(false);
+                health[1].SetActive(false);
+                health[2].SetActive(false);
+                health[3].SetActive(false);
+                health[4].SetActive(false);
+            }
+            StartCoroutine(HandleDamage(0,1, 0.1f));
         }
     }
 
@@ -94,6 +100,14 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Healed!");
           
     }
-
-
+    private IEnumerator HandleDamage(float delay, float shakeDuration, float shakeMagnitude)
+    {
+        isTakingDamage = true;
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(delay);
+   
+        StartCoroutine(screenShake.Shake(shakeDuration, shakeMagnitude));
+        isTakingDamage = false;
+        Time.timeScale = 1;
+    }
 }

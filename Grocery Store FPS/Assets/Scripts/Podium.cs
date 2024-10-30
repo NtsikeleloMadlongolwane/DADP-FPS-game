@@ -27,7 +27,9 @@ public class Podium : MonoBehaviour
             {
                 // Perform an action if the tag matches
                 Debug.Log("Collided with an object tagged as PickUp");
-                Destroy(collision.gameObject);
+               // Destroy(collision.gameObject);
+
+               collision.gameObject.SetActive(false);
                 LockedKey.SetActive(true);
                // doorBlockingCollider.SetActive(false);
 

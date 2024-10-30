@@ -75,6 +75,7 @@ public class FirstPersonControls : MonoBehaviour
     public int firstAid = 2;
     public PlayerHealth playerHealing;
     public ParticleSystem particleSystem;
+
     [Space(5)]
     public GameObject[] cursor;
     public GameObject[] playerPNG;
@@ -126,6 +127,7 @@ public class FirstPersonControls : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
+
 
         //objectText = GetComponent<TextMeshPro>();
         // objectDiscription = GetComponent<TextMeshPro>();
