@@ -587,7 +587,7 @@ public class FirstPersonControls : MonoBehaviour
     
     }
 
-    IEnumerator CheckForPickUp()
+    public void CheckForPickUp()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
@@ -659,9 +659,5 @@ public class FirstPersonControls : MonoBehaviour
                 objectDiscription.text = "";
             }
         }
-        yield return new WaitForSeconds(1);
-        objectText.text = "";
-        objectDiscription.text = "";
-        objectHowToUse.text = "";
     }
 }
