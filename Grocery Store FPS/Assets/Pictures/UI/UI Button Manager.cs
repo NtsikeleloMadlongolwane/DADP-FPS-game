@@ -129,7 +129,7 @@ public class UIButtonManager : MonoBehaviour
 
     public void RestartYes()
     {
-        SceneManager.LoadScene("SampleScene",LoadSceneMode.Additive);
+        SceneManager.LoadScene("SampleScene");
         Time.timeScale = 1;
     }
 

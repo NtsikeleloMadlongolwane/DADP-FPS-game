@@ -15,6 +15,7 @@ TagManager:
   - Upgrade
   - Bullet
   - LockedDoor
+  - LoreTablet
   layers:
   - Default
   - TransparentFX

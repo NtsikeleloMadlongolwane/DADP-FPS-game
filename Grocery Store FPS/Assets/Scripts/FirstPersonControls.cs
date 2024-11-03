@@ -12,6 +12,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("MOVEMENT SETTINGS")]
     [Space(5)]
     // Public variables to set movement and look speed, and the player camera
+    public bool canMove = true;
     public float moveSpeed; // Speed at which the player moves
     public float lookSpeed; // Sensitivity of the camera movement
     public float gravity = -9.81f; // Gravity value
@@ -116,6 +117,10 @@ public class FirstPersonControls : MonoBehaviour
     private bool isCoolDown;
     private bool isAttacking;
 
+    [Header("LORE TABLETS")]
+    public bool isLookingAtTablet = false;
+    public LoreTablets loreTablets1 = new LoreTablets();
+
     private void Awake()
     {
         // Get and store the CharacterController component attached to this GameObject
@@ -180,11 +185,12 @@ public class FirstPersonControls : MonoBehaviour
     private void Update()
     {
         // Call Move and LookAround methods every frame to handle player movement and camera rotation
-        if (!isAttacking)
-        {
-            isWalking = Move();
+        isWalking = Move();
+        if (canMove == false)
+        { 
+            LookAround();
         }
-        LookAround();
+
         ApplyGravity();
 
         //UI
@@ -446,6 +452,36 @@ public class FirstPersonControls : MonoBehaviour
                 Debug.Log("You just picked up " + objectName);
                 Destroy(hit.collider.gameObject);
             }
+
+            else if (hit.collider.CompareTag("LoreTablet"))
+            {
+                LoreTablets loreTablets = hit.collider.GetComponent<LoreTablets>();
+                if (!isLookingAtTablet)
+                {
+                    isLookingAtTablet = true;
+                    // Set the tablet message active
+                    loreTablets.ReadTablet(true);
+
+                    // freeze other things too 
+                    Time.timeScale = 0;
+                    canMove = true;
+
+
+                }
+                else if (isLookingAtTablet)
+                {
+                    isLookingAtTablet = false;
+
+                    //set Tablet massage inactive
+                    loreTablets.ReadTablet(false);
+
+                    //unfreeze other things too
+                    Time.timeScale = 1;
+                    canMove = false ;
+
+                }
+
+            }
         }
     }
 
@@ -551,7 +587,7 @@ public class FirstPersonControls : MonoBehaviour
     
     }
 
-    private void CheckForPickUp()
+    IEnumerator CheckForPickUp()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
@@ -601,7 +637,7 @@ public class FirstPersonControls : MonoBehaviour
                     string objectTag = hit.collider.gameObject.tag;
                     objectHowToUse.text = "";
 
-                    objectText.text = "LOCKED DOOR";
+                    objectDiscription.text = "LOCKED DOOR";
 
                     if (objectName == "Elevator Lock")
                     {
@@ -623,5 +659,9 @@ public class FirstPersonControls : MonoBehaviour
                 objectDiscription.text = "";
             }
         }
+        yield return new WaitForSeconds(1);
+        objectText.text = "";
+        objectDiscription.text = "";
+        objectHowToUse.text = "";
     }
 }
