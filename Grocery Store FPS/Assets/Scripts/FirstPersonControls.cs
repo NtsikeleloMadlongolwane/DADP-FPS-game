@@ -580,7 +580,6 @@ public class FirstPersonControls : MonoBehaviour
         if (gamePaused == false)
         {
             gamePaused = true;
-            HUD.SetActive(false);
             canMove = true;
             Time.timeScale = 0;
             UIbuttonManager.PauseGame();
@@ -589,7 +588,6 @@ public class FirstPersonControls : MonoBehaviour
         else 
         {
             gamePaused = false;
-            HUD.SetActive(true);
             canMove = false;
             Time.timeScale = 1;
             UIbuttonManager.Continue();
