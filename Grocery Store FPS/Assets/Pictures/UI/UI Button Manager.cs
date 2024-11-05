@@ -88,11 +88,15 @@ public class UIButtonManager : MonoBehaviour
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
+        firstPersonControls.HUD.SetActive(false);
+        firstPersonControls.canMove = true;
     }
 
     public void Continue()
     {
         pauseMenu.SetActive(false);
+        firstPersonControls.HUD.SetActive(true);
+        firstPersonControls.canMove = false;
         Time.timeScale = 1;
 
         //

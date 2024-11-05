@@ -3493,7 +3493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &189474195
 Transform:
   m_ObjectHideFlags: 0
@@ -56706,8 +56706,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe8c0c6f8b6760f48a849a46091fe132, type: 2}
+  m_sharedMaterial: {fileID: 2584866281715577158, guid: fe8c0c6f8b6760f48a849a46091fe132,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -57158,8 +57159,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e5f60ab2e4bee8640903166327fe2bd7, type: 2}
+  m_sharedMaterial: {fileID: 6465622956827336518, guid: e5f60ab2e4bee8640903166327fe2bd7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -59732,8 +59734,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d126519243d1ec489ec888222c69c59, type: 2}
+  m_sharedMaterial: {fileID: 7976410518250032821, guid: 7d126519243d1ec489ec888222c69c59,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -67312,6 +67315,7 @@ MonoBehaviour:
   firstAid: 2
   playerHealing: {fileID: 8680730885876046406}
   particleSystem: {fileID: 1643001347}
+  HUD: {fileID: 1240811509845791253}
   cursor:
   - {fileID: 2348223241622426936}
   - {fileID: 4035361615848283173}

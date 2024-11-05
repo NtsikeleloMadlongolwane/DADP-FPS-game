@@ -76,6 +76,7 @@ public class FirstPersonControls : MonoBehaviour
     public int firstAid = 2;
     public PlayerHealth playerHealing;
     public ParticleSystem particleSystem;
+    public GameObject HUD;
 
     [Space(5)]
     public GameObject[] cursor;
@@ -461,6 +462,7 @@ public class FirstPersonControls : MonoBehaviour
                     isLookingAtTablet = true;
                     // Set the tablet message active
                     loreTablets.ReadTablet(true);
+                    HUD.SetActive(false);
 
                     // freeze other things too 
                     Time.timeScale = 0;
@@ -474,7 +476,7 @@ public class FirstPersonControls : MonoBehaviour
 
                     //set Tablet massage inactive
                     loreTablets.ReadTablet(false);
-
+                    HUD.SetActive(true);
                     //unfreeze other things too
                     Time.timeScale = 1;
                     canMove = false ;
@@ -578,6 +580,7 @@ public class FirstPersonControls : MonoBehaviour
         if (gamePaused == false)
         {
             gamePaused = true;
+            HUD.SetActive(false);
             canMove = true;
             Time.timeScale = 0;
             UIbuttonManager.PauseGame();
@@ -586,6 +589,7 @@ public class FirstPersonControls : MonoBehaviour
         else 
         {
             gamePaused = false;
+            HUD.SetActive(true);
             canMove = false;
             Time.timeScale = 1;
             UIbuttonManager.Continue();
@@ -630,7 +634,7 @@ public class FirstPersonControls : MonoBehaviour
                     string objectName = hit.collider.gameObject.name;
                     string objectTag = hit.collider.gameObject.tag;
 
-                    objectText.text = "DOOR";
+                    objectText.text = "";
                     objectDiscription.text = "";
                     objectHowToUse.text = "PRESS [F] TO OPEN";
 
@@ -643,7 +647,7 @@ public class FirstPersonControls : MonoBehaviour
                     string objectTag = hit.collider.gameObject.tag;
                     objectHowToUse.text = "";
 
-                    objectDiscription.text = "LOCKED DOOR";
+                    objectText.text = "LOCKED DOOR";
 
                     if (objectName == "Elevator Lock")
                     {
@@ -656,14 +660,24 @@ public class FirstPersonControls : MonoBehaviour
 
                     Debug.Log("Object Name: " + objectName + ", Object Tag: " + objectTag);
                 }
+                else if (hit.collider.CompareTag("LoreTablet"))
+                {
+                    actionUI.SetActive(true);
+
+                    objectText.text = "";
+                    objectHowToUse.text = "";
+                    objectDiscription.text = "PRESS [F] TO INTERACT";
+                }
+                else
+                {
+                    actionUI.SetActive(false);
+                    objectText.text = "";
+                    objectHowToUse.text = "";
+                    objectDiscription.text = "";
+                }
+
             }
-            else
-            {
-                actionUI.SetActive(false);
-                objectText.text = "";
-                objectHowToUse.text = "";
-                objectDiscription.text = "";
-            }
+          
         }
     }
 }
