@@ -517,22 +517,26 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (gunCrownUnlocked == true)
         {
-            if (Ammunition == 1)
+            if(gamePaused == false && canMove == false) 
             {
+                if (Ammunition == 1)
+                {
 
-                // Instantiate the projectile at the fire point
-                GameObject projectile1 = Instantiate(projectilePrefab, RightFirePoint.position, RightFirePoint.rotation);
-                //GameObject projectile2 = Instantiate(projectilePrefab, LeftFirePoint.position, LeftFirePoint.rotation);
+                    // Instantiate the projectile at the fire point
+                    GameObject projectile1 = Instantiate(projectilePrefab, RightFirePoint.position, RightFirePoint.rotation);
+                    //GameObject projectile2 = Instantiate(projectilePrefab, LeftFirePoint.position, LeftFirePoint.rotation);
 
-                // Get the Rigidbody component of the projectile and set its velocity
-                Rigidbody rb = projectile1.GetComponent<Rigidbody>();
-                rb.velocity = RightFirePoint.forward * projectileSpeed;
- 
-                gunCrownUnlocked = false;
-                // Destroy the projectile after 3 seconds
-                Destroy(projectile1, 3f);
-                Invoke("ShootingCooldown", shootingCooldown);
+                    // Get the Rigidbody component of the projectile and set its velocity
+                    Rigidbody rb = projectile1.GetComponent<Rigidbody>();
+                    rb.velocity = RightFirePoint.forward * projectileSpeed;
+
+                    gunCrownUnlocked = false;
+                    // Destroy the projectile after 3 seconds
+                    Destroy(projectile1, 3f);
+                    Invoke("ShootingCooldown", shootingCooldown);
+                }
             }
+           
         }
     }
     void ShootingCooldown()
@@ -574,6 +578,7 @@ public class FirstPersonControls : MonoBehaviour
         if (gamePaused == false)
         {
             gamePaused = true;
+            canMove = true;
             Time.timeScale = 0;
             UIbuttonManager.PauseGame();
             Cursor.lockState = CursorLockMode.None;
@@ -581,6 +586,7 @@ public class FirstPersonControls : MonoBehaviour
         else 
         {
             gamePaused = false;
+            canMove = false;
             Time.timeScale = 1;
             UIbuttonManager.Continue();
         }
