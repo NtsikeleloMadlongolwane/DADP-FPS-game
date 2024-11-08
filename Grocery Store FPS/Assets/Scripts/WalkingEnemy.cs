@@ -18,6 +18,7 @@ public class WalkingEnemy : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player").transform;
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         SetRandomPatrolPoint();

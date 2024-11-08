@@ -121,8 +121,7 @@ public class FirstPersonControls : MonoBehaviour
 
     [Header("LORE TABLETS")]
     public bool isLookingAtTablet = false;
-    public LoreTablets loreTablets1 = new LoreTablets();
-
+    public LoreTablets loreTablets1;
     private void Awake()
     {
         // Get and store the CharacterController component attached to this GameObject

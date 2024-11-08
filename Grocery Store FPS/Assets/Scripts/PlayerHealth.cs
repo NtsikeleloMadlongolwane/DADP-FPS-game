@@ -11,12 +11,15 @@ public class PlayerHealth : MonoBehaviour
     [Header("UI")]
     public GameObject[] health;
     public ButtonHandler buttonHandler;
+    public GameObject loseScreen;
 
     public int maxHealth = 50;
     private int currentHealth;
 
     public Vector3 respawnPoint;
+    public Vector3 playerCheckPoint;
     private CharacterController characterController;
+
     private void Update()
     {
     }
@@ -36,10 +39,9 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Player health: " + currentHealth);
             if (currentHealth <= 0)
             {
-                buttonHandler.Die();
                 // Player dies
+                loseScreen.SetActive(true);
                 Time.timeScale = 0;
-
             }
 
             if (currentHealth == 50)
@@ -111,5 +113,14 @@ public class PlayerHealth : MonoBehaviour
     {
         respawnPoint = NewRespawnPoint;
         Debug.Log("Respawn Point is now " + (respawnPoint));
+    }
+
+    public void CheckPointSpawn()
+    {
+        loseScreen.SetActive(false);
+        respawnPoint = playerCheckPoint;
+        currentHealth = maxHealth;
+        Respawn();
+        Time.timeScale = 1;
     }
 }

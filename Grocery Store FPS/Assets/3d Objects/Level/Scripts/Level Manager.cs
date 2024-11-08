@@ -10,4 +10,9 @@ public class LevelManager : MonoBehaviour
     {
         Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
     }
+
+    public void RestarLevel()
+    {
+
+    }
 }
