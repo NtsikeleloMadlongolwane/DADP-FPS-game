@@ -115,7 +115,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f3f3417e65de9f648ae4a4a29cb0e3a7, type: 2}
+      objectReference: {fileID: 2100000, guid: 0f27d646c6fdcc643b411f448afc4b39, type: 2}
     - target: {fileID: 919132149155446097, guid: 4976906d9d4354d478608afa86c27616,
         type: 3}
       propertyPath: m_Name
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointA: {fileID: 2411329859150529723}
   pointB: {fileID: 2284342886338049780}
-  speed: 1
+  speed: 1.8
 --- !u!1001 &6869516812285459314
 PrefabInstance:
   m_ObjectHideFlags: 0

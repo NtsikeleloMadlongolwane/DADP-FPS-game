@@ -12,26 +12,26 @@ public class PlayerHealth : MonoBehaviour
     public GameObject[] health;
     public ButtonHandler buttonHandler;
 
-    public ScreenShake screenShake;
-    private bool isTakingDamage = false;
-
     public int maxHealth = 50;
     private int currentHealth;
 
+    public Vector3 respawnPoint;
+    private CharacterController characterController;
     private void Update()
     {
     }
     void Start()
     {
+       characterController = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         TakeDamage(0);
-        screenShake = Camera.main.GetComponent<ScreenShake>();
+        respawnPoint = transform.position;
+
     }
 
     public void TakeDamage(int damage)
     {
-        if (!isTakingDamage)
-        {
+
             currentHealth -= damage;
             Debug.Log("Player health: " + currentHealth);
             if (currentHealth <= 0)
@@ -90,8 +90,6 @@ public class PlayerHealth : MonoBehaviour
                 health[3].SetActive(false);
                 health[4].SetActive(false);
             }
-            StartCoroutine(HandleDamage(0,1, 0.1f));
-        }
     }
 
     public void Healing()
@@ -100,14 +98,18 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Healed!");
           
     }
-    private IEnumerator HandleDamage(float delay, float shakeDuration, float shakeMagnitude)
+
+    public void Respawn()
     {
-        isTakingDamage = true;
-        Time.timeScale = 0;
-        yield return new WaitForSeconds(delay);
-   
-        StartCoroutine(screenShake.Shake(shakeDuration, shakeMagnitude));
-        isTakingDamage = false;
-        Time.timeScale = 1;
+        characterController.enabled = false;
+        this.transform.position = respawnPoint;
+        characterController.enabled = true;
+        Debug.Log("Player has been moverd");
+
+    }
+    public void SetRespawnPoint(Vector3 NewRespawnPoint)
+    {
+        respawnPoint = NewRespawnPoint;
+        Debug.Log("Respawn Point is now " + (respawnPoint));
     }
 }

@@ -77,6 +77,7 @@ public class FirstPersonControls : MonoBehaviour
     public PlayerHealth playerHealing;
     public ParticleSystem particleSystem;
     public GameObject HUD;
+    public Vector3 respawnPoint;
 
     [Space(5)]
     public GameObject[] cursor;
@@ -133,7 +134,6 @@ public class FirstPersonControls : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
-
 
         //objectText = GetComponent<TextMeshPro>();
         // objectDiscription = GetComponent<TextMeshPro>();
@@ -210,8 +210,6 @@ public class FirstPersonControls : MonoBehaviour
             hasAirDashed = false;
         }
         // Dash mechanic ends here
-
-
     }
 
     public void PerformAttack()
@@ -678,4 +676,17 @@ public class FirstPersonControls : MonoBehaviour
           
         }
     }
+
+   /* public void SetRespawnPoint(Vector3 NewRespawnPoint)
+    {
+        respawnPoint = NewRespawnPoint;
+        Debug.Log("Respawn Point is now " + (respawnPoint));
+    }
+    public void Respawn()
+    {
+        //transform.position = respawnPoint;
+        transform.position = Vector3.MoveTowards(transform.position, respawnPoint, 100 * Time.deltaTime);
+        Debug.Log("Playwe has been moved to respawnPoint at" + (respawnPoint));
+
+    }*/
 }
