@@ -14118,7 +14118,6 @@ GameObject:
   - component: {fileID: 934476500}
   - component: {fileID: 934476499}
   - component: {fileID: 934476502}
-  - component: {fileID: 934476503}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -14239,6 +14238,7 @@ MonoBehaviour:
   Spot3: {fileID: 429455144}
   Spot4: {fileID: 1804583101}
   player: {fileID: 6685720513277457935}
+<<<<<<< HEAD
   CrystalFlame: {fileID: 4885969143804383377, guid: 6b45c73b8781f9243ab8d2aa8a67597e,
     type: 3}
   Pillar: {fileID: 6558153682807001270, guid: 706d3b7ed8bf9664697556b2fdfb52df, type: 3}
@@ -14262,6 +14262,10 @@ MonoBehaviour:
   maxHealth: 500
   splash: {fileID: 4985752009726626986, guid: 76ba537ed0773a8469a1153cdd6793ee, type: 3}
   isBossALive: 1
+=======
+  CrystalFlame: {fileID: 5139726547742367501}
+  Pillar: {fileID: 689306740}
+>>>>>>> parent of 43aa5cf (push)
 --- !u!1 &935036953 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5729898937925066933, guid: 01c01b84053c4b9488b5f434a96174ea,

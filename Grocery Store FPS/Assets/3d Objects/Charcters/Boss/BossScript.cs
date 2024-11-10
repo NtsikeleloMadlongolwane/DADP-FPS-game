@@ -9,7 +9,11 @@ public class BossScript : MonoBehaviour
 {
     public Transform BossFightPosition;
     public SealHealth sealHealth;
+<<<<<<< HEAD
     private bool FightMode = false;
+=======
+    private bool FightMode = true;
+>>>>>>> parent of 43aa5cf (push)
 
     [Header("SPIKE MOVE")]
     public SpikeWave2 spikeWave;
@@ -29,12 +33,15 @@ public class BossScript : MonoBehaviour
     public ParticleSystem CrystalFlame;
     public GameObject Pillar;
 
+<<<<<<< HEAD
     [Header("Boss Dying")]
     public BossHealth bossHealth;
     public GameObject voidSplash;
     public GameObject crystalSpalsh;
     public ScreenShake screenShake;
     public GameObject winScreen;
+=======
+>>>>>>> parent of 43aa5cf (push)
 
     public void Update()
     {
@@ -44,11 +51,19 @@ public class BossScript : MonoBehaviour
             FightMode = true;
         }
 
+<<<<<<< HEAD
+=======
+        if(FightMode == true) 
+        {
+           // RandomMoveSelector();
+        }
+
+>>>>>>> parent of 43aa5cf (push)
     }
 
     public void Start()
     {
-        StartCoroutine(CycleMoves());
+
     }
     public void MoveToFightPosition()
     {
@@ -137,13 +152,18 @@ public class BossScript : MonoBehaviour
     {
         for (int i = 0;i <10 ;i++)
         {
+<<<<<<< HEAD
             yield return new WaitForSeconds(1);
+=======
+            yield return new WaitForSeconds(0.5f);
+>>>>>>> parent of 43aa5cf (push)
             StartCoroutine(TargetPillars());
         }
 
         yield return new WaitForSeconds(5); // space to shoot boos
     }
 
+<<<<<<< HEAD
     public IEnumerator CycleMoves()
     {
         while(bossHealth.isBossALive == true)
@@ -174,4 +194,6 @@ public class BossScript : MonoBehaviour
         winScreen.SetActive(true);
     }
 
+=======
+>>>>>>> parent of 43aa5cf (push)
 }
