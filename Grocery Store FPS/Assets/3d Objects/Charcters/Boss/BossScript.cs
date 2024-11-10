@@ -9,7 +9,9 @@ public class BossScript : MonoBehaviour
 {
     public Transform BossFightPosition;
     public SealHealth sealHealth;
-    private bool FightMode = true;
+    public BossHealth bossHealth;
+  
+    private bool FightMode = false;
 
     [Header("SPIKE MOVE")]
     public SpikeWave2 spikeWave;
@@ -30,6 +32,13 @@ public class BossScript : MonoBehaviour
     public GameObject Pillar;
 
 
+    [Header("Boss Death")]
+    public ScreenShake screenShake;
+    public ParticleSystem voidSplash;
+    public ParticleSystem ctystalSplash;
+    public GameObject bossMesh;
+    public GameObject winScreen;
+
     public void Update()
     {
         if (sealHealth.sealisbroken == true)
@@ -37,17 +46,11 @@ public class BossScript : MonoBehaviour
             MoveToFightPosition();
             FightMode = true;
         }
-
-        if(FightMode == true) 
-        {
-           // RandomMoveSelector();
-        }
-
     }
 
     public void Start()
     {
-
+        StartCoroutine(CycleMoves());
     }
     public void MoveToFightPosition()
     {
@@ -125,7 +128,7 @@ public class BossScript : MonoBehaviour
     { 
             Vector3 spawnPoint = player.transform.position;
             ParticleSystem fire = Instantiate(CrystalFlame, spawnPoint, Quaternion.identity);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             GameObject pillar = Instantiate(Pillar, spawnPoint, Quaternion.identity);
             yield return new WaitForSeconds(3f);
             Destroy(pillar);
@@ -136,11 +139,47 @@ public class BossScript : MonoBehaviour
     {
         for (int i = 0;i <10 ;i++)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             StartCoroutine(TargetPillars());
         }
-
-        yield return new WaitForSeconds(5); // space to shoot boos
     }
 
+    public  IEnumerator CycleMoves()
+    {
+        
+            while (bossHealth.isBossAlive == true)
+            {
+                if(FightMode == true)
+                {
+                    int moveIndex = Random.Range(0, 3);
+                    switch (moveIndex)
+                    {
+                        case 0:
+                            Spikes();
+                            break;
+                        case 1:
+                            yield return StartCoroutine(EnemySpawnMove());
+                            break;
+                        case 2:
+                            yield return StartCoroutine(PillarSequence());
+                         break;
+
+                    }
+
+                yield return new WaitForSeconds(5f);
+                }
+               
+            }
+            StartCoroutine(screenShake.Shake(10f, 0.5f));
+            Instantiate(voidSplash, gameObject.transform.position, Quaternion.identity);
+            Instantiate(ctystalSplash, gameObject.transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(11f);
+            bossMesh.SetActive(false);
+
+
+            Time.timeScale = 0; //Pause game
+                                // win screen    
+                                //
+            Debug.Log("Boss is dead!!");     
+    }
 }
