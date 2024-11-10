@@ -16,16 +16,11 @@ public class EnemyHealth : MonoBehaviour
         Instantiate(splash, transform.position, Quaternion.identity);
         Instantiate(splash, transform.position, Quaternion.identity);
         Instantiate(splash, transform.position, Quaternion.identity);
-        Instantiate(splash, transform.position, Quaternion.identity);
-        Instantiate(splash, transform.position, Quaternion.identity);
-        Instantiate(splash, transform.position, Quaternion.identity);
-        Instantiate(splash, transform.position, Quaternion.identity);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        
         Debug.Log("Enemy health: " + currentHealth);
         if (currentHealth <= 0)
         {

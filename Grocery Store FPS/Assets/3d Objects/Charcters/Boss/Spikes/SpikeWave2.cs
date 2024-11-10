@@ -8,41 +8,33 @@ public class SpikeWave2 : MonoBehaviour
     public float height = 2f; // Maximum height to reach
     public float speed = 1f; // Movement speed
     public float delayBetweenObjects = 0.5f; // Delay between objects starting their motion
-    public GameObject seal;
 
-    public float timeBeforeWaveStarts = 3f;
-    public float loopInterval = 5f;
+    public float timeBeforeWaveStarts = 0.5f;
+    public float loopInterval = 0.5f;
     public GameObject beam;
+    public ParticleSystem crystalBeam;
 
-
-    void Start()
+    private void Start()
     {
-        StartCoroutine(LoopedWaveSequence());
+        crystalBeam.Stop();
     }
-
-
-        /*  void OnCollisionEnter(Collision collision)
-          {
-              if (collision.gameObject.CompareTag("Player")) // Adjust the tag as needed
-              {
-                  StartCoroutine(RiseAndFallSequence(timeBeforeWaveStarts));
-              }
-          }*/
-
-        IEnumerator LoopedWaveSequence()
+    public  IEnumerator LoopedWaveSequence()
     {
-        
-        yield return new WaitForSeconds(timeBeforeWaveStarts);
+        crystalBeam.Play();
+        beam.SetActive(true);
 
-        while (true)
+        for (int i = 0; i < 2; i++)
         {
-            beam.SetActive(true);
-            yield return StartCoroutine(RiseAndFallSequence(3));
-            yield return new WaitForSeconds(loopInterval);
+            yield return new WaitForSeconds(2f);
+            
+            yield return StartCoroutine(RiseAndFallSequence(0.1f));          
         }
+
+        beam.SetActive(false);
+        crystalBeam.Stop();
     }
 
-        IEnumerator RiseAndFallSequence(float delay)
+    public  IEnumerator RiseAndFallSequence(float delay)
     {
         yield return new WaitForSeconds(delay);
         foreach (Transform obj in objects)
@@ -67,6 +59,8 @@ public class SpikeWave2 : MonoBehaviour
             // Delay before moving the next object
             yield return new WaitForSeconds(delayBetweenObjects);
         }
-        beam.SetActive(false);
+   
     }
+
+
 }
