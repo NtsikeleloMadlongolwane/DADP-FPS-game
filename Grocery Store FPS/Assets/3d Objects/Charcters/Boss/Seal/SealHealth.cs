@@ -49,7 +49,6 @@ public class SealHealth : MonoBehaviour
             // Enemy dies
 
             //Destroy(gameObject);
-            sealisbroken = true;
             StartCoroutine(screenShake.Shake(15f, 0.8f));
             StartCoroutine(DisableThings());
 
@@ -61,7 +60,8 @@ public class SealHealth : MonoBehaviour
         topFloor.SetActive(false);
         topFloor2.SetActive(false);
         yield return new WaitForSeconds(8);
-        gameObject.SetActive(false);
+        sealisbroken = true;
+        //gameObject.SetActive(false);    
         Debug.Log("Seal is Broken");
     }
 }

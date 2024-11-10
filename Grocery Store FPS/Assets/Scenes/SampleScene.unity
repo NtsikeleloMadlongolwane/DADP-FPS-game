@@ -14218,7 +14218,6 @@ GameObject:
   - component: {fileID: 934476500}
   - component: {fileID: 934476499}
   - component: {fileID: 934476502}
-  - component: {fileID: 934476503}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -14327,7 +14326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BossFightPosition: {fileID: 878056892}
   sealHealth: {fileID: 1110590524}
-  bossHealth: {fileID: 0}
   spikeWave: {fileID: 387076619}
   walkingEnemy: {fileID: 1302307283897640430, guid: fe8b7f9b65934d046ace8bbf32d4e4e0,
     type: 3}
@@ -14342,21 +14340,6 @@ MonoBehaviour:
   player: {fileID: 6685720513277457935}
   CrystalFlame: {fileID: 5139726547742367501}
   Pillar: {fileID: 689306740}
---- !u!114 &934476503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934476497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67b9105f3a0f71e40b8cf0764d03d1ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 500
-  splash: {fileID: 4504333542032848354, guid: c9d7c7b63018a964ba40a07127545aad, type: 3}
-  isBossAlive: 1
 --- !u!1 &935036953 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5729898937925066933, guid: 01c01b84053c4b9488b5f434a96174ea,
