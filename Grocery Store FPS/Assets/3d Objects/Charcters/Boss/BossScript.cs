@@ -9,7 +9,7 @@ public class BossScript : MonoBehaviour
 {
     public Transform BossFightPosition;
     public SealHealth sealHealth;
-    private bool FightMode = true;
+    private bool FightMode = false;
 
     [Header("SPIKE MOVE")]
     public SpikeWave2 spikeWave;
@@ -29,6 +29,12 @@ public class BossScript : MonoBehaviour
     public ParticleSystem CrystalFlame;
     public GameObject Pillar;
 
+    [Header("Boss Dying")]
+    public BossHealth bossHealth;
+    public GameObject voidSplash;
+    public GameObject crystalSpalsh;
+    public ScreenShake screenShake;
+    public GameObject winScreen;
 
     public void Update()
     {
@@ -38,16 +44,11 @@ public class BossScript : MonoBehaviour
             FightMode = true;
         }
 
-        if(FightMode == true) 
-        {
-           // RandomMoveSelector();
-        }
-
     }
 
     public void Start()
     {
-
+        StartCoroutine(CycleMoves());
     }
     public void MoveToFightPosition()
     {
@@ -136,11 +137,41 @@ public class BossScript : MonoBehaviour
     {
         for (int i = 0;i <10 ;i++)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1);
             StartCoroutine(TargetPillars());
         }
 
         yield return new WaitForSeconds(5); // space to shoot boos
+    }
+
+    public IEnumerator CycleMoves()
+    {
+        while(bossHealth.isBossALive == true)
+        {
+            if(FightMode == true)
+            {
+                int moveIndex = Random.Range(0, 3);
+                switch (moveIndex)
+                {
+                    case 0:
+                        Spikes();
+                        break;
+                    case 1:
+                        yield return StartCoroutine(EnemySpawnMove());
+                        break;
+                    case 2:
+                        yield return StartCoroutine(PillarSequence());
+                        break;
+                }
+                yield return new WaitForSeconds(5f);
+            }
+           
+        }
+
+        StartCoroutine(screenShake.Shake(10f, 1f));
+        yield return new WaitForSeconds(11);
+        Time.timeScale = 0;
+        winScreen.SetActive(true);
     }
 
 }

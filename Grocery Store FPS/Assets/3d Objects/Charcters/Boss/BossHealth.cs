@@ -8,6 +8,7 @@ public class BossHealth : MonoBehaviour
     public int maxHealth = 500;
     private int currentHealth;
     public GameObject splash;
+    public bool isBossALive = true;
 
     void Start()
     {
@@ -18,9 +19,11 @@ public class BossHealth : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log("Enemy health: " + currentHealth);
+        Instantiate(splash,gameObject.transform.position, Quaternion.identity);
         if (currentHealth <= 0)
-        { 
-            Debug.Log("Enemy is dead!");
+        {
+            isBossALive = false;
+            Debug.Log("Boss is dead!");
         }
     }
 }

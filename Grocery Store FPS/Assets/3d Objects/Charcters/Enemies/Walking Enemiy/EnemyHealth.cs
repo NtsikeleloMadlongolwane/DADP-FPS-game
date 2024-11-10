@@ -12,10 +12,6 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        Instantiate(splash, transform.position, Quaternion.identity);
-        Instantiate(splash, transform.position, Quaternion.identity);
-        Instantiate(splash, transform.position, Quaternion.identity);
-        Instantiate(splash, transform.position, Quaternion.identity);
     }
 
     public void TakeDamage(int damage)
@@ -28,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
             Debug.Log("Enemy is dead!");
             Instantiate(splash, transform.position,Quaternion.identity);
             Destroy(gameObject);
+
         }
     }
 }
