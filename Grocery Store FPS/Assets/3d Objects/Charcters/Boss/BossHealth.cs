@@ -19,8 +19,7 @@ public class BossHealth : MonoBehaviour
         currentHealth -= damage;
         Debug.Log("Enemy health: " + currentHealth);
         if (currentHealth <= 0)
-        {
-              
+        { 
             Debug.Log("Enemy is dead!");
         }
     }
