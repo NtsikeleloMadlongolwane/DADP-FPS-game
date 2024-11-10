@@ -21253,7 +21253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1110590523
 Transform:
   m_ObjectHideFlags: 0
@@ -52863,12 +52863,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1ced9045f374a418a48d57608b166e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boss: {fileID: 0}
-  BossSeal: {fileID: 0}
-  BossPosition: {fileID: 0}
-  TopFloorCage: {fileID: 0}
-  ElevatorDoor: {fileID: 0}
-  DoorPostion: {fileID: 0}
+  Boss: {fileID: 934476497}
+  BossSeal: {fileID: 1110590522}
+  BossPosition: {fileID: 628469437}
+  TopFloorCage: {fileID: 566629102}
+  ElevatorDoor: {fileID: 268421844}
+  DoorPostion: {fileID: 380971420}
 --- !u!4 &1838085728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5679763908802097132, guid: e716bd764d8d84f47a053c48a9f86abb,
