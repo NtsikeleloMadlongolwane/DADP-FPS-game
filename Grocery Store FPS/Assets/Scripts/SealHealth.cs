@@ -8,21 +8,11 @@ public class SealHealth : MonoBehaviour
     public int maxHealth = 50;
     private int currentHealth;
     public ParticleSystem splash;
-    public ParticleSystem crystalExplotion;
-
-    private GameObject topFloor;
-    private GameObject topFloor2;
-    public bool sealisbroken;
-
-    public ScreenShake screenShake;
 
     void Start()
     {
         currentHealth = maxHealth;
-        crystalExplotion.Stop();
-        sealisbroken = false;
-        topFloor = GameObject.Find("TopFloorCage");
-        topFloor2 = GameObject.Find("Floor.007");
+        
     }
 
     void OnTriggerEnter(Collider collision)
@@ -47,21 +37,9 @@ public class SealHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             // Enemy dies
-
-            //Destroy(gameObject);
-            StartCoroutine(screenShake.Shake(15f, 0.8f));
-            StartCoroutine(DisableThings());
-
+            Debug.Log("Enemy is dead!");
+            Instantiate(splash, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
-    }
-    public IEnumerator DisableThings()
-    {
-        yield return new WaitForSeconds(5);
-        topFloor.SetActive(false);
-        topFloor2.SetActive(false);
-        yield return new WaitForSeconds(8);
-        sealisbroken = true;
-        //gameObject.SetActive(false);    
-        Debug.Log("Seal is Broken");
     }
 }
