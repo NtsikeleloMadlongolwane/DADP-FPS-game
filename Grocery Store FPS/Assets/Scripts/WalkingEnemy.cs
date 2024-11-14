@@ -67,7 +67,7 @@ public class WalkingEnemy : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(10); // Adjust the damage value as needed
+              //  playerHealth.TakeDamage(10); // Adjust the damage value as needed
 
             }
 

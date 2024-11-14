@@ -12,7 +12,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("MOVEMENT SETTINGS")]
     [Space(5)]
     // Public variables to set movement and look speed, and the player camera
-    public bool canMove = true;
+    public bool canMove = false;
     public float moveSpeed; // Speed at which the player moves
     public float lookSpeed; // Sensitivity of the camera movement
     public float gravity = -9.81f; // Gravity value
@@ -106,18 +106,6 @@ public class FirstPersonControls : MonoBehaviour
     private bool hasAirDashed = false;
     private Vector3 dashDirection;
 
-    [Header("Attack Mechanic")]
-    public GameObject slashPrefab1;
-    public GameObject slashPrefab2;
-    public Transform slashSpawnPoint;
-    public float attckDuration = 0.2f;
-    public float coolDownDuration =1f;
-    public int attackDamage = 10;
-
-    public bool canAttack = false;
-    private bool isCoolDown;
-    private bool isAttacking;
-
     [Header("LORE TABLETS")]
     public bool isLookingAtTablet = false;
     public LoreTablets loreTablets1;
@@ -161,7 +149,7 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the shoot input event
         playerInput.Player.Shoot.performed += ctx => GunCrown(); // Call the Shoot method when shoot input is performed
 
-        playerInput.Player.Attack.performed += ctx => PerformAttack(); // call attack when attack is performed
+       // playerInput.Player.Attack.performed += ctx => PerformAttack(); // call attack when attack is performed
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
@@ -211,33 +199,6 @@ public class FirstPersonControls : MonoBehaviour
         // Dash mechanic ends here
 
 
-    }
-
-    public void PerformAttack()
-    {
-        if (!isCoolDown && canAttack)
-        {
-            StartCoroutine(Attack());
-        }           
-    }
-    
-    IEnumerator Attack()
-    {
-        isCoolDown = true;
-        isAttacking = true;
-
-        //create the slash
-        GameObject slash = Instantiate(slashPrefab1, slashSpawnPoint.position, slashSpawnPoint.rotation);
-        slash.SetActive(true);
-
-        yield return new WaitForSeconds(attckDuration);
-        //destroy slash
-        Destroy(slash);
-
-        //attack cooldown
-        yield return new WaitForSeconds(attckDuration);
-        isCoolDown = false;
-        isAttacking = false;
     }
 
     // DASH MECHANIC ///
@@ -556,8 +517,8 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (firstAid > 0)
         {
-            playerHealing.Healing();
-            playerHealing.TakeDamage(0);
+           // playerHealing.Healing();
+            //playerHealing.TakeDamage(0);
             particleSystem.Play();
             firstAid--;
         }
