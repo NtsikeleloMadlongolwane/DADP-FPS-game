@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class SpikePit : MonoBehaviour
 {
-    public int damage = 1;
+    //public Transform player;
+    //public Transform respawnPoint;
 
-    void OnCollisionEnter(Collision collision)
+    public int damage = 0;
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player collided wiyth spike pit");
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-
             Debug.Log("Enemy Made Contact");
-
             // Deal damage to the player
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage); // Adjust the damage value as nee
 
-            playerHealth.TakeDamage(1); // Adjust the damage value as needed
-
-           
-
+            }
         }
     }
 

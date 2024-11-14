@@ -13,28 +13,33 @@ public class PlayerHealth : MonoBehaviour
     public ButtonHandler buttonHandler;
     public GameObject loseScreen;
 
+    public ScreenShake screenShake;
+    private bool isTakingDamage = false;
+
     public int maxHealth = 50;
     private int currentHealth;
 
+<<<<<<< HEAD
     public Vector3 respawnPoint;
     public Vector3 playerCheckPoint;
     private CharacterController characterController;
 
+=======
+>>>>>>> parent of eecb44b (Respawn System Fully Functional. :))
     private void Update()
     {
     }
     void Start()
     {
-       characterController = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         TakeDamage(0);
-        respawnPoint = transform.position;
-
+        screenShake = Camera.main.GetComponent<ScreenShake>();
     }
 
     public void TakeDamage(int damage)
     {
-
+        if (!isTakingDamage)
+        {
             currentHealth -= damage;
             Debug.Log("Player health: " + currentHealth);
             if (currentHealth <= 0)
@@ -92,6 +97,8 @@ public class PlayerHealth : MonoBehaviour
                 health[3].SetActive(false);
                 health[4].SetActive(false);
             }
+            StartCoroutine(HandleDamage(0,1, 0.1f));
+        }
     }
 
     public void Healing()
@@ -100,19 +107,15 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Healed!");
           
     }
-
-    public void Respawn()
+    private IEnumerator HandleDamage(float delay, float shakeDuration, float shakeMagnitude)
     {
-        characterController.enabled = false;
-        this.transform.position = respawnPoint;
-        characterController.enabled = true;
-        Debug.Log("Player has been moverd");
-
-    }
-    public void SetRespawnPoint(Vector3 NewRespawnPoint)
-    {
-        respawnPoint = NewRespawnPoint;
-        Debug.Log("Respawn Point is now " + (respawnPoint));
+        isTakingDamage = true;
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(delay);
+   
+        StartCoroutine(screenShake.Shake(shakeDuration, shakeMagnitude));
+        isTakingDamage = false;
+        Time.timeScale = 1;
     }
 
     public void CheckPointSpawn()
