@@ -12,7 +12,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("MOVEMENT SETTINGS")]
     [Space(5)]
     // Public variables to set movement and look speed, and the player camera
-    public bool canMove = false;
+    public bool canMove = true;
     public float moveSpeed; // Speed at which the player moves
     public float lookSpeed; // Sensitivity of the camera movement
     public float gravity = -9.81f; // Gravity value
@@ -81,7 +81,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public GameObject[] cursor;
     public GameObject[] playerPNG;
-    public bool gamePaused = false;
+    public bool gamePaused = true;
     public UIButtonManager UIbuttonManager;
     [Space(5)]
 
@@ -174,7 +174,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         // Call Move and LookAround methods every frame to handle player movement and camera rotation
         isWalking = Move();
-        if (canMove == false)
+        if (canMove)
         { 
             LookAround();
         }
