@@ -109,6 +109,9 @@ public class FirstPersonControls : MonoBehaviour
     [Header("LORE TABLETS")]
     public bool isLookingAtTablet = false;
     public LoreTablets loreTablets1;
+
+    [Header("Respawn")]
+    public Transform respawnPosition;
     private void Awake()
     {
         // Get and store the CharacterController component attached to this GameObject
@@ -149,7 +152,7 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the shoot input event
         playerInput.Player.Shoot.performed += ctx => GunCrown(); // Call the Shoot method when shoot input is performed
 
-       // playerInput.Player.Attack.performed += ctx => PerformAttack(); // call attack when attack is performed
+        // playerInput.Player.Attack.performed += ctx => PerformAttack(); // call attack when attack is performed
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
@@ -175,7 +178,7 @@ public class FirstPersonControls : MonoBehaviour
         // Call Move and LookAround methods every frame to handle player movement and camera rotation
         isWalking = Move();
         if (canMove)
-        { 
+        {
             LookAround();
         }
 
@@ -186,12 +189,12 @@ public class FirstPersonControls : MonoBehaviour
 
         // Dash Mechanic
 
-        if (isDashing == true )
+        if (isDashing == true)
         {
             characterController.Move(dashDirection * dashSpeed * Time.deltaTime);
         }
 
-        if(characterController.isGrounded && !isDashing)
+        if (characterController.isGrounded && !isDashing)
         {
             canDash = true;
             hasAirDashed = false;
@@ -204,12 +207,12 @@ public class FirstPersonControls : MonoBehaviour
     // DASH MECHANIC ///
     public void Dash()
     {
-        if((canDash && characterController.isGrounded) || (!hasAirDashed && !characterController.isGrounded) ) 
+        if ((canDash && characterController.isGrounded) || (!hasAirDashed && !characterController.isGrounded))
         {
             dashDirection = transform.forward;
             isDashing = true;
             canDash = false;
-            if(!characterController.isGrounded)
+            if (!characterController.isGrounded)
             {
                 hasAirDashed = true;
             }
@@ -225,13 +228,13 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (isDashing == true)
         {
-           isDashing = false;
+            isDashing = false;
         }
     }
     // DASH MECHANIC ///
     public bool Move()
     {
-       
+
         // Create a movement vector based on the input
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
 
@@ -439,7 +442,7 @@ public class FirstPersonControls : MonoBehaviour
                     HUD.SetActive(true);
                     //unfreeze other things too
                     Time.timeScale = 1;
-                    canMove = false ;
+                    canMove = false;
 
                 }
 
@@ -479,7 +482,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (gunCrownUnlocked == true)
         {
-            if(gamePaused == false && canMove == false) 
+            if (gamePaused == false && canMove == false)
             {
                 if (Ammunition == 1)
                 {
@@ -498,7 +501,7 @@ public class FirstPersonControls : MonoBehaviour
                     Invoke("ShootingCooldown", shootingCooldown);
                 }
             }
-           
+
         }
     }
     void ShootingCooldown()
@@ -517,7 +520,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (firstAid > 0)
         {
-           // playerHealing.Healing();
+            // playerHealing.Healing();
             //playerHealing.TakeDamage(0);
             particleSystem.Play();
             firstAid--;
@@ -545,14 +548,14 @@ public class FirstPersonControls : MonoBehaviour
             UIbuttonManager.PauseGame();
             Cursor.lockState = CursorLockMode.None;
         }
-        else 
+        else
         {
             gamePaused = false;
             canMove = false;
             Time.timeScale = 1;
             UIbuttonManager.Continue();
         }
-    
+
     }
 
     public void CheckForPickUp()
@@ -635,7 +638,14 @@ public class FirstPersonControls : MonoBehaviour
                 }
 
             }
-          
+
         }
+    }
+
+    public void Respawn()
+    {
+        characterController.enabled = false;
+        gameObject.transform.position = respawnPosition.transform.position;
+        characterController.enabled = true;
     }
 }

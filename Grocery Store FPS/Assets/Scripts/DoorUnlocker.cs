@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class DoorUnlocker : MonoBehaviour
 {
-    public List<GameObject> keys; // List of GameObjects to monitor
+    /*public List<GameObject> keys; // List of GameObjects to monitor
 
     public GameObject elevatorLock;
-    public GameObject ememyRoomLock;
     private void Update()
     {
         for (int i = keys.Count - 1; i >= 0; i--)
@@ -23,13 +22,29 @@ public class DoorUnlocker : MonoBehaviour
         {
             elevatorLock.SetActive(false);
         }
-        else if (keys.Count == 1)
-        {
-            ememyRoomLock.SetActive(false);
-        }
         else
         {
 
+        }
+    }*/
+
+    public List<GameObject> keys; // List of GameObjects to monitor
+    public GameObject elevatorLock;
+
+    private void Update()
+    {
+        for (int i = 0; i < keys.Count; i++)
+        {
+            if (keys[i] == null)
+            {
+                // Remove the destroyed object from the list
+                keys.RemoveAt(i);
+                i--; // Adjust the index after removal
+            }
+        }
+        if (keys.Count == 0)
+        {
+            elevatorLock.SetActive(false);
         }
     }
 

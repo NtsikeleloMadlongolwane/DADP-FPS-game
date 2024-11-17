@@ -29,10 +29,10 @@ public class Podium : MonoBehaviour
                 Debug.Log("Collided with an object tagged as PickUp");
                // Destroy(collision.gameObject);
 
-               collision.gameObject.SetActive(false);
+              // collision.gameObject.SetActive(false);
                 LockedKey.SetActive(true);
                // doorBlockingCollider.SetActive(false);
-
+               Destroy(collision.gameObject);
             }
             else
             {

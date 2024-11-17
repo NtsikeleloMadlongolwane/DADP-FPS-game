@@ -7,8 +7,9 @@ public class Elevator : MonoBehaviour
 
     public Transform bottomFloor;
     public Transform topFloor;
-    public float speed = 2.0f;
+    public float speed = 5.0f;
     private Transform targetFloor;
+    private int floor = 1;
 
     void Start()
     {
@@ -28,7 +29,16 @@ public class Elevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            targetFloor = topFloor;
+            if (floor == 1)
+            {
+                targetFloor = topFloor;
+                floor = 2;
+            }
+            else if (floor == 2)
+            {
+                targetFloor = bottomFloor;
+                floor = 1;
+            }
         }
     }
 }
