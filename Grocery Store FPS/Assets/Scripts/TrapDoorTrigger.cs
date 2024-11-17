@@ -17,6 +17,9 @@ public class TrapDoorTrigger : MonoBehaviour
             if(counter == 1)
             {
                 trapdoor.LowerTrapdoor();
+
+                destructibleObjects[0].SetActive(true);
+                destructibleObjects[1].SetActive(true);
             }
            
         }

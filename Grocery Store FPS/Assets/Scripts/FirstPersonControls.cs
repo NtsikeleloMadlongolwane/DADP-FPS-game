@@ -67,7 +67,7 @@ public class FirstPersonControls : MonoBehaviour
 
     [Header("GunCrown")]
     public bool gunCrownUnlocked = true;
-    public int Ammunition;
+    public int Ammunition = 1;
     public float shootingCooldown = 0f;
 
     [Header("UI")]
@@ -482,7 +482,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         if (gunCrownUnlocked == true)
         {
-            if (gamePaused == false && canMove == false)
+            if (gamePaused == false && canMove == true)
             {
                 if (Ammunition == 1)
                 {

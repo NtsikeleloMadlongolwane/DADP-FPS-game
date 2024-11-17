@@ -8,7 +8,7 @@ public class WalkingEnemy : MonoBehaviour
     private Animator anim;
 
     [Header("Patroling")]
-    public Transform[] patrolPoints;
+  //  public Transform[] patrolPoints;
     private NavMeshAgent agent;
     private Transform currentTarget;
     public Transform player;
@@ -21,7 +21,7 @@ public class WalkingEnemy : MonoBehaviour
         player = GameObject.Find("Player").transform;
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        SetRandomPatrolPoint();
+       // SetRandomPatrolPoint();
 
     }
 
@@ -36,7 +36,7 @@ public class WalkingEnemy : MonoBehaviour
         {
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
             {
-                SetRandomPatrolPoint();
+                //SetRandomPatrolPoint();
             }
             else
             {
@@ -45,7 +45,7 @@ public class WalkingEnemy : MonoBehaviour
         }
     }
 
-    void SetRandomPatrolPoint()
+ /*   void SetRandomPatrolPoint()
     {
         if (patrolPoints.Length == 0)
             return;
@@ -54,7 +54,7 @@ public class WalkingEnemy : MonoBehaviour
         currentTarget = patrolPoints[randomIndex];
         agent.SetDestination(currentTarget.position);
 
-    }
+    }*/
 
     void OnCollisionEnter(Collision collision)
     {
@@ -67,7 +67,7 @@ public class WalkingEnemy : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-              //  playerHealth.TakeDamage(10); // Adjust the damage value as needed
+               playerHealth.TakeDamage(10); // Adjust the damage value as needed
 
             }
 
