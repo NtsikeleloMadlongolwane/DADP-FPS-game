@@ -49,7 +49,6 @@ public class BossMovements : MonoBehaviour
             GameObject enemy = Instantiate(WalkingEnemyPrefab , SpawnPoints[i].position, SpawnPoints[1].rotation);
         }
     }
-
     private IEnumerator MoveOrbToPosition(GameObject orb, Vector3 targetPosition, float speed)
     {
         while (orb != null && Vector3.Distance(orb.transform.position, targetPosition) > 0.01f)
