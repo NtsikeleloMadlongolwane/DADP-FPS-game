@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 160e2821bc7ca784a92001251e9c4010, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1275,7 +1275,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244948668}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2786,6 +2786,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 33e56ff060f079f46a3b1437c5d1790d, type: 2}
+    - target: {fileID: -1817938385009094250, guid: 4b955e36122120147b5c7ea54795e920,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33e56ff060f079f46a3b1437c5d1790d, type: 2}
     - target: {fileID: -907718056206256595, guid: 4b955e36122120147b5c7ea54795e920,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2882,6 +2887,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6629797300637803691, guid: 4b955e36122120147b5c7ea54795e920,
         type: 3}
+    - target: {fileID: 6606347814720052928, guid: 4b955e36122120147b5c7ea54795e920,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8035a2b42f14b444c9939572a1422367, type: 2}
     - target: {fileID: 6781549751126034761, guid: 4b955e36122120147b5c7ea54795e920,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5004,8 +5014,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 15
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5064,7 +5074,7 @@ Transform:
   m_GameObject: {fileID: 1064097039}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -47, y: 95, z: 56.9}
+  m_LocalPosition: {x: -47, y: 142.1, z: 56.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5837,7 +5847,7 @@ Transform:
   m_GameObject: {fileID: 1223622042}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.373806, y: -24.77, z: 9.539249}
+  m_LocalPosition: {x: 20.373806, y: -33.36, z: 9.539249}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6226,7 +6236,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257537584}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6568,7 +6578,7 @@ Transform:
   m_GameObject: {fileID: 1313359726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.373806, y: -24.77, z: 9.539249}
+  m_LocalPosition: {x: 20.373806, y: -33.36, z: 9.539249}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6832,7 +6842,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405803039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9699,7 +9709,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124549336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

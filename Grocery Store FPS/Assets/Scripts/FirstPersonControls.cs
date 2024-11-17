@@ -176,10 +176,11 @@ public class FirstPersonControls : MonoBehaviour
     private void Update()
     {
         // Call Move and LookAround methods every frame to handle player movement and camera rotation
-        isWalking = Move();
+ 
         if (canMove)
         {
             LookAround();
+            isWalking = Move();
         }
 
         ApplyGravity();
@@ -543,7 +544,7 @@ public class FirstPersonControls : MonoBehaviour
         if (gamePaused == false)
         {
             gamePaused = true;
-            canMove = true;
+            canMove = false;
             Time.timeScale = 0;
             UIbuttonManager.PauseGame();
             Cursor.lockState = CursorLockMode.None;
@@ -551,7 +552,7 @@ public class FirstPersonControls : MonoBehaviour
         else
         {
             gamePaused = false;
-            canMove = false;
+            canMove = true;
             Time.timeScale = 1;
             UIbuttonManager.Continue();
         }
