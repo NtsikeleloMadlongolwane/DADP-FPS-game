@@ -30,6 +30,7 @@ public class BossMovements : MonoBehaviour
     private void Start()
     {
         Splash.Stop();
+        StartCoroutine(EnemySpawnMove());
     }
     public IEnumerator EnemySpawnMove()
     {
