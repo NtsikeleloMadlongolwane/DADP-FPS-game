@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossMovements : MonoBehaviour
 {
     [Header("Before Figths Starts")]
+    public bool hasFightStarted = false;
+
+    public ScreenShake2 screenShake;
     public GameObject seal;
     public Transform ArenaPosition;
+    public GameObject Roof;
     public bool FightMode = false;
+    public ParticleSystem TelePortSplash;
+    public GameObject playerCamera;
 
     [Header("MOVES")]
+    public bool isMoveRunning = false;
     [Space(5)]
     [Header("ENEMY SAPWN MOVE")]
     public bool enemySapwnMove = true;
@@ -19,18 +27,27 @@ public class BossMovements : MonoBehaviour
     public Transform[] SpawnPoints;
     public ParticleSystem Splash;
 
-    [Header("SPIKES MOVES")]
+    [Header("SPIKES MOVE")]
     public Transform[] SpikeSpots;
     public GameObject SpikeParticles;
     public GameObject Spike_Prefab;
 
     public ParticleSystem GlowingGenStone;
-   public void Update()
+
+    [Header("TARGETING FLAME PILLARS")]
+    public GameObject player;
+    public ParticleSystem CrystalFlame;
+    public GameObject Pillar;
+
+    public ParticleSystem crystalBeam;
+    public ParticleSystem crystalFlame;
+
+    public void Update()
     {
-        if (seal == null)
+        if (seal == null && !hasFightStarted)
         {
-            gameObject.transform.position = ArenaPosition.transform.position;
-            FightMode = true;
+            StartCoroutine(FightStart());
+            hasFightStarted = true;
         }
     }
 
@@ -38,7 +55,11 @@ public class BossMovements : MonoBehaviour
     {
         Splash.Stop();
         GlowingGenStone.Stop();
-        StartCoroutine(SpikeMove());
+        crystalBeam.Stop();
+        crystalFlame.Stop();
+        TelePortSplash.Stop();
+
+        StartCoroutine(CheckFightMode());
     }
     public IEnumerator EnemySpawnMove()
     {
@@ -89,5 +110,91 @@ public class BossMovements : MonoBehaviour
         } 
         yield return new WaitForSeconds(8f);
         GlowingGenStone.Stop();
+    }
+
+
+    public IEnumerator TargetPillars()
+    {
+        //Vector3 spawnPoint = player.transform.position;
+        Vector3 spawnPoint = new Vector3(player.transform.position.x, 29.824f, player.transform.position.z);
+        ParticleSystem fire = Instantiate(CrystalFlame, spawnPoint, Quaternion.identity);
+        Destroy(fire.gameObject, 5f);
+        yield return new WaitForSeconds(1f);
+        GameObject pillar = Instantiate(Pillar, spawnPoint, Quaternion.identity);
+        yield return new WaitForSeconds(3f);
+        Destroy(pillar);
+        fire.Stop();
+    }
+
+    public IEnumerator PillarSequence()
+    {
+        crystalBeam.Play();
+        crystalFlame.Play();
+
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(1);
+            StartCoroutine(TargetPillars());
+        }
+
+        yield return new WaitForSeconds(5); // space to shoot boos
+        crystalBeam.Stop();
+        crystalFlame.Stop();
+    }
+
+    public IEnumerator RandomMove()
+    {
+        while (FightMode)
+        {
+            if (!isMoveRunning)
+            {
+                isMoveRunning = true;
+                int randomMove = Random.Range(0, 3);
+
+                switch(randomMove)
+                {
+                    case 0:
+                        yield return StartCoroutine(EnemySpawnMove());
+                        break;
+                    case 1:
+                        yield return StartCoroutine(SpikeMove());
+                        break;
+                    case 2:
+                        yield return StartCoroutine(PillarSequence());
+                        break;
+                }
+
+                isMoveRunning=false;
+            }
+
+            yield return new WaitForSeconds(3f);
+        }
+    }
+
+    public IEnumerator CheckFightMode()
+    {
+        while (true)
+        {
+            if(FightMode && !isMoveRunning)
+            {
+                StartCoroutine(RandomMove());
+            }
+            yield return null;
+        }
+    }
+
+    public IEnumerator FightStart()
+    {
+        yield return new WaitForSeconds(1f);
+        screenShake = playerCamera.GetComponent<ScreenShake2>();
+        StartCoroutine(screenShake.Shake(10f, 1f));
+        yield return new WaitForSeconds(5f);
+        Roof.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        TelePortSplash.Play();
+        gameObject.transform.position = ArenaPosition.transform.position;
+        TelePortSplash.Play();
+        yield return new WaitForSeconds(3f);
+        FightMode = true;
     }
 }

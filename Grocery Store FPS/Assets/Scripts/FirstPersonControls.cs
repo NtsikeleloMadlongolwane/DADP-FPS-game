@@ -544,7 +544,7 @@ public class FirstPersonControls : MonoBehaviour
         if (gamePaused == false)
         {
             gamePaused = true;
-            canMove = false;
+            canMove = true;
             Time.timeScale = 0;
             UIbuttonManager.PauseGame();
             Cursor.lockState = CursorLockMode.None;
@@ -552,7 +552,7 @@ public class FirstPersonControls : MonoBehaviour
         else
         {
             gamePaused = false;
-            canMove = true;
+            canMove = false;
             Time.timeScale = 1;
             UIbuttonManager.Continue();
         }

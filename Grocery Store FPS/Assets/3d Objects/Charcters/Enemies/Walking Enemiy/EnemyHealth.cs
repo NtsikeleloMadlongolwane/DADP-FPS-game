@@ -22,7 +22,8 @@ public class EnemyHealth : MonoBehaviour
         {
             // Enemy dies
             Debug.Log("Enemy is dead!");
-            Instantiate(splash, transform.position,Quaternion.identity);
+            GameObject EnemySplash = Instantiate(splash, transform.position,Quaternion.identity);
+            Destroy(EnemySplash, 1f);
             Destroy(gameObject);
 
         }

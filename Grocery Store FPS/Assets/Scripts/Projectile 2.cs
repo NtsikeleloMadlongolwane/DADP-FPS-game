@@ -13,9 +13,15 @@ public class Projectile2 : MonoBehaviour
            if (enemyHealth != null) 
             { 
                 enemyHealth.TakeDamage(damage); 
-            } 
-           
-           // Destroy the projectile upon collision
-           Destroy(gameObject); }
+            }
+
+            // Destroy the projectile upon collision
+            Destroy(gameObject);
         }
+        else if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+
     }
+}

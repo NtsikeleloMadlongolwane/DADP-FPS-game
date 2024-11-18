@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52db4dc277a2de943988b52d2e7b8d7b, type: 2}
+  - {fileID: 2100000, guid: 1cb7ebd5dbfbadb4599352d9d4964473, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1502241415711137430}
   - component: {fileID: 6911863342171216355}
   - component: {fileID: 1362775863967879816}
-  - component: {fileID: 1250449251565390065}
+  - component: {fileID: 7933103498817144243}
   m_Layer: 0
   m_Name: Outter Pillar
   m_TagString: Untagged
@@ -171,7 +171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 35e35a086b7453d46916f3dd08a5b663, type: 2}
+  - {fileID: 2100000, guid: 265cd26e2f0aae04485316f3560569a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1250449251565390065
+--- !u!114 &7933103498817144243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,6 +225,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6558153682807001270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10babf7d2091b74eb3cf85c06070550, type: 3}
+  m_Script: {fileID: 11500000, guid: d63c47a3975c39547aec83e84b75c2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
