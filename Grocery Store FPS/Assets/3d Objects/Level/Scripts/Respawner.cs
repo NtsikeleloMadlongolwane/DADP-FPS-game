@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Respawner : MonoBehaviour
 {
+    public GameObject crystalKeySpot;
+    public GameObject voidKeySpot;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -11,6 +13,17 @@ public class Respawner : MonoBehaviour
             FirstPersonControls firstPersonControls = other.GetComponent<FirstPersonControls>();
 
             firstPersonControls.Respawn();
+        }
+        else if (other.CompareTag("PickUp"))
+        {
+            if(other.gameObject.name == "StarkKey Final")
+            {
+                other.gameObject.transform.position = crystalKeySpot.transform.position;
+            }
+            else
+            {
+                other.gameObject.transform.position = voidKeySpot.transform.position;
+            }            
         }
     }
 }

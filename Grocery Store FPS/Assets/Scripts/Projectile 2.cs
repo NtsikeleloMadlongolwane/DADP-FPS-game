@@ -22,6 +22,18 @@ public class Projectile2 : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (other.CompareTag("Boss"))
+        {
+            // Deal damage to the enemy
+           BossMovements enemyHealth = other.GetComponent<BossMovements>();
+           if (enemyHealth != null) 
+            { 
+                enemyHealth.TakeDamage(damage); 
+            }
+
+            // Destroy the projectile upon collision
+            Destroy(gameObject);
+        }
 
     }
 }

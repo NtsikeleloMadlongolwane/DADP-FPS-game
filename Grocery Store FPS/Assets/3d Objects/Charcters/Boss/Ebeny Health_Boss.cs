@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class EbenyHealth_Boss : MonoBehaviour
 {
-    public int maxHealth = 50;
+    public BossMovements bossMovements;
+    public int maxHealth = 500;
     private int currentHealth;
     public GameObject splash;
-    public ParticleSystem splash2;
-
     void Start()
     {
         currentHealth = maxHealth;
+        bossMovements = GetComponent<BossMovements>();
+        Debug.Log("Enemy health: " + currentHealth);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        splash2.Play();
         Debug.Log("Enemy health: " + currentHealth);
         if (currentHealth <= 0)
         {
             // Enemy dies
             Debug.Log("Enemy is dead!");
-            Instantiate(splash, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-
+            GameObject EnemySplash = Instantiate(splash, transform.position, Quaternion.identity);
+            bossMovements.BossDeath();
         }
     }
 }

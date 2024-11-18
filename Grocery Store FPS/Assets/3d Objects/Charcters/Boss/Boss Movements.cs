@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class BossMovements : MonoBehaviour
 {
+    [Header("BOSS HEALTH")]
+    public int maxHealth = 500;
+    private int currentHealth;
+    public GameObject splash;
+
     [Header("Before Figths Starts")]
     public bool hasFightStarted = false;
 
@@ -53,13 +58,21 @@ public class BossMovements : MonoBehaviour
 
     private void Start()
     {
+        // stop particles
         Splash.Stop();
         GlowingGenStone.Stop();
         crystalBeam.Stop();
         crystalFlame.Stop();
         TelePortSplash.Stop();
 
+        // cam
+        screenShake = playerCamera.GetComponent<ScreenShake2>();
+        // move
         StartCoroutine(CheckFightMode());
+
+        //health
+        currentHealth = maxHealth;
+        Debug.Log("Enemy health: " + currentHealth);
     }
     public IEnumerator EnemySpawnMove()
     {
@@ -186,7 +199,6 @@ public class BossMovements : MonoBehaviour
     public IEnumerator FightStart()
     {
         yield return new WaitForSeconds(1f);
-        screenShake = playerCamera.GetComponent<ScreenShake2>();
         StartCoroutine(screenShake.Shake(10f, 1f));
         yield return new WaitForSeconds(5f);
         Roof.SetActive(false);
@@ -196,5 +208,34 @@ public class BossMovements : MonoBehaviour
         TelePortSplash.Play();
         yield return new WaitForSeconds(3f);
         FightMode = true;
+    }
+
+    public IEnumerator BossDeath()
+    {
+        // Stop fighting
+        FightMode=false;
+        TelePortSplash.Play();
+        yield return new WaitForSeconds(1f);
+
+        // shake
+        StartCoroutine(screenShake.Shake(10f, 1f));
+        Splash.Play();
+        yield return new WaitForSeconds(10f);
+        // explostion
+        Instantiate(TelePortSplash, gameObject.transform.position, Quaternion.identity);
+        Splash.Stop();
+        Destroy(gameObject);
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("Enemy health: " + currentHealth);
+        if (currentHealth <= 0)
+        {
+            // Enemy dies
+            Debug.Log("Enemy is dead!");
+            GameObject EnemySplash = Instantiate(splash, transform.position, Quaternion.identity);
+            StartCoroutine(BossDeath());
+        }
     }
 }

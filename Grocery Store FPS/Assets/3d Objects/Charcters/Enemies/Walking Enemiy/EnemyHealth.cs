@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
+    private bool isEenmyDead = false;
     public int maxHealth = 50;
     private int currentHealth;
     public GameObject splash;
