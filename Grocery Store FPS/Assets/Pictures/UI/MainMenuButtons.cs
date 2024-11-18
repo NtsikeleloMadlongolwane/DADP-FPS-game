@@ -22,6 +22,7 @@ public class MainMenuButtons : MonoBehaviour
         }
         moveLeftButton.onClick.AddListener(MoveLeft);
         moveRightButton.onClick.AddListener(MoveRight);
+
         SetPotionPositions();
         LogCurrentPotion();
 
@@ -33,7 +34,7 @@ public class MainMenuButtons : MonoBehaviour
         }
     }
 
-   /* void SetPotionPositions()
+   void SetPotionPositions()
     {
         for (int i = 0; i < potions.Length; i++)
         {
@@ -46,9 +47,9 @@ public class MainMenuButtons : MonoBehaviour
             // Enable or disable buttons based on their position
             potionButtons[indices[i]].gameObject.SetActive(i == centerOption);
         }
-    }*/
+    }
 
-    void SetPotionPositions()
+   /* void SetPotionPositions()
     {
         for (int i = 0; i < potions.Length; i++)
         {
@@ -58,11 +59,11 @@ public class MainMenuButtons : MonoBehaviour
             potionTransform.localPosition = positions[i];
             buttonTransform.localPosition = Vector3.zero; // Center button inside parent
 
-            potionTransform.localScale = (i == centerOption) ? new Vector3(0.5f, 0.5f, 1f) : new Vector3(0.3f, 0.3f, 1f);
+            potionTransform.localScale = (i == centerOption) ? new Vector3(1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
 
             potionButtons[indices[i]].gameObject.SetActive(i == centerOption);
         }
-    }
+    }*/
 
     void MoveLeft()
     {

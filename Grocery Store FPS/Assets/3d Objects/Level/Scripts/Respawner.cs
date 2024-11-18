@@ -23,7 +23,8 @@ public class Respawner : MonoBehaviour
             else
             {
                 other.gameObject.transform.position = voidKeySpot.transform.position;
-            }            
+            }
+            
         }
     }
 }

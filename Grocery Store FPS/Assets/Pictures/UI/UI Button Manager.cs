@@ -15,6 +15,7 @@ public class UIButtonManager : MonoBehaviour
     public GameObject controls_main_Menu;
     public GameObject selectLevelMenu;
     public GameObject attention_Level;
+    public GameObject PlayLevelButtonMenu;
     public GameObject attention_Quit;
     [Space(5)]
     [Header("IN-GAME MENUS")]
@@ -64,7 +65,7 @@ public class UIButtonManager : MonoBehaviour
     {
         mainMenu.SetActive(true);
         attention_Level.SetActive(false);
-        SceneManager.LoadScene("SampleScene",LoadSceneMode.Additive);
+        SceneManager.LoadScene("Level 1");
     }
     public void AttentionGameNo()
     {
@@ -87,16 +88,17 @@ public class UIButtonManager : MonoBehaviour
 
     public void PauseGame()
     {
+        Time.timeScale = 0;
         pauseMenu.SetActive(true);
         firstPersonControls.HUD.SetActive(false);
-        firstPersonControls.canMove = true;
+        firstPersonControls.canMove = false;
     }
 
     public void Continue()
     {
         pauseMenu.SetActive(false);
         firstPersonControls.HUD.SetActive(true);
-        firstPersonControls.canMove = false;
+        firstPersonControls.canMove = true;
         Time.timeScale = 1;
 
         //
@@ -151,6 +153,11 @@ public class UIButtonManager : MonoBehaviour
 
     public void MainMenuYes()
     {
-        SceneManager.LoadScene("New Main Menu",LoadSceneMode.Additive);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void PlayLevel()
+    {
+        PlayLevelButtonMenu.SetActive(true);
     }
 }

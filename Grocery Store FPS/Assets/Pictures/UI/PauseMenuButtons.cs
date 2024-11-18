@@ -16,6 +16,13 @@ public class PauseMenuButtons : MonoBehaviour
 
     void Start()
     {
+
+        // Ensure arrays are properly initialized
+        if (positions.Length != 4 || potions.Length != 4 || potionButtons.Length != 4) 
+        { Debug.LogError("Ensure positions, potions, and potionButtons arrays have 4 elements each."); 
+            return; 
+        }
+
         for (int i = 0; i < positions.Length; i++)
         {
             indices[i] = i;
@@ -52,6 +59,11 @@ public class PauseMenuButtons : MonoBehaviour
     {
         for (int i = 0; i < potions.Length; i++)
         {
+            if (indices[i] >= potions.Length || indices[i] >= positions.Length) 
+            { 
+                Debug.LogError("Index out of bounds while setting potion positions."); 
+                continue; 
+            }
             RectTransform potionTransform = potions[indices[i]].rectTransform;
             RectTransform buttonTransform = potionButtons[indices[i]].GetComponent<RectTransform>();
 
@@ -64,7 +76,7 @@ public class PauseMenuButtons : MonoBehaviour
         }
     }
 
-    void MoveLeft()
+    public void MoveLeft()
     {
         int tempIndex = indices[0];
         for (int i = 0; i < indices.Length - 1; i++)
@@ -72,11 +84,12 @@ public class PauseMenuButtons : MonoBehaviour
             indices[i] = indices[i + 1];
         }
         indices[indices.Length - 1] = tempIndex;
-        SetPotionPositions();
+        this.SetPotionPositions();
         LogCurrentPotion();
+        Debug.Log("Pressed Left Button");
     }
 
-    void MoveRight()
+    public void MoveRight()
     {
         int tempIndex = indices[indices.Length - 1];
         for (int i = indices.Length - 1; i > 0; i--)
@@ -84,8 +97,9 @@ public class PauseMenuButtons : MonoBehaviour
             indices[i] = indices[i - 1];
         }
         indices[0] = tempIndex;
-        SetPotionPositions();
+        this.SetPotionPositions();
         LogCurrentPotion();
+        Debug.Log("Pressed Right Button");
     }
 
     void LogCurrentPotion()
@@ -96,5 +110,10 @@ public class PauseMenuButtons : MonoBehaviour
     void OnPotionButtonClick(int index)
     {
         Debug.Log("Potion button clicked: " + potionButtons[index].name);
+    }
+
+    public void TestButton()
+    {
+        Debug.Log("Button Pressed!");
     }
 }
