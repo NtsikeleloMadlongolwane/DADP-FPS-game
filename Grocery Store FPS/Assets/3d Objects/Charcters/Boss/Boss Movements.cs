@@ -225,6 +225,8 @@ public class BossMovements : MonoBehaviour
         Instantiate(TelePortSplash, gameObject.transform.position, Quaternion.identity);
         Splash.Stop();
         Destroy(gameObject);
+        
+        //Win Screen
     }
     public void TakeDamage(int damage)
     {

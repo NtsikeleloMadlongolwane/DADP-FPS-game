@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-
+    public Transform teleporterPosition;
     public int maxHealth = 100; // The player's maximum health
-    private int currentHealth;
+    public int currentHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +33,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        // Handle player death (e.g., play death animation, respawn, end game)
-        Debug.Log("Player has died"); // For now, we'll just log a message
-        // Implement additional logic here for what happens when the player dies
+        // Reset Respawn Point to teleporter
+
+        FirstPersonControls firstPersonControls = GetComponent<FirstPersonControls>();
+        firstPersonControls.respawnPosition = teleporterPosition.transform;
+
+        // Lose Screen
     }
 }
 

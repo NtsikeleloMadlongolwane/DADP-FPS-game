@@ -537,7 +537,8 @@ public class FirstPersonControls : MonoBehaviour
             heals[0].SetActive(false);
             heals[1].SetActive(false);
         }
-
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        playerHealth.currentHealth += 10;
     }
     public void PauseGameMenu()
     {
