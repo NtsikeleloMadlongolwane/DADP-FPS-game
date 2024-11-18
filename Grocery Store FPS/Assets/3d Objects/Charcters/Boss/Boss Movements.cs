@@ -18,7 +18,14 @@ public class BossMovements : MonoBehaviour
     public GameObject EnemyOrbs;
     public Transform[] SpawnPoints;
     public ParticleSystem Splash;
-    public void Update()
+
+    [Header("SPIKES MOVES")]
+    public Transform[] SpikeSpots;
+    public GameObject SpikeParticles;
+    public GameObject Spike_Prefab;
+
+    public ParticleSystem GlowingGenStone;
+   public void Update()
     {
         if (seal == null)
         {
@@ -30,7 +37,8 @@ public class BossMovements : MonoBehaviour
     private void Start()
     {
         Splash.Stop();
-        StartCoroutine(EnemySpawnMove());
+        GlowingGenStone.Stop();
+        StartCoroutine(SpikeMove());
     }
     public IEnumerator EnemySpawnMove()
     {
@@ -64,5 +72,22 @@ public class BossMovements : MonoBehaviour
             Destroy(orb);
             Splash.Stop();
         }
+    }
+
+    public IEnumerator SpikeMove()
+    {
+        GlowingGenStone.Play();
+        yield return new WaitForSeconds(0.5f);
+        GameObject spike;
+        GameObject effects;
+        for (int i = 0;i < SpikeSpots.Length; i++)
+        {
+            spike = Instantiate(Spike_Prefab, SpikeSpots[i].transform.position, Quaternion.identity);
+            effects = Instantiate(SpikeParticles, SpikeSpots[i].transform.position, Quaternion.identity);
+           Destroy(spike, 7.5f);
+           Destroy(effects, 7.5f);
+        } 
+        yield return new WaitForSeconds(8f);
+        GlowingGenStone.Stop();
     }
 }
