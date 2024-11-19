@@ -3115,6 +3115,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7443668083146846337, guid: 599dc8d3f1ed2a745b092a1da9b46c34,
+        type: 3}
+      propertyPath: m_TagString
+      value: LoreTablet
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 599dc8d3f1ed2a745b092a1da9b46c34,
         type: 3}
       propertyPath: m_Name
@@ -9211,6 +9216,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoreTab (Main RoomCrystal)
       objectReference: {fileID: 0}
+    - target: {fileID: 8078272788514712742, guid: 1c4029b3df4ef3d4ea52ff76b28d7dd7,
+        type: 3}
+      propertyPath: m_TagString
+      value: LoreTablet
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9296,6 +9306,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoreTab Cystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240647542414282217, guid: 01c01b84053c4b9488b5f434a96174ea,
+        type: 3}
+      propertyPath: m_TagString
+      value: LoreTablet
       objectReference: {fileID: 0}
     - target: {fileID: 3257393204713686348, guid: 01c01b84053c4b9488b5f434a96174ea,
         type: 3}
@@ -10504,7 +10519,7 @@ PrefabInstance:
     - target: {fileID: -6365961396585630953, guid: 4b955e36122120147b5c7ea54795e920,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6338348170782444383, guid: 4b955e36122120147b5c7ea54795e920,
         type: 3}
@@ -10714,7 +10729,7 @@ PrefabInstance:
     - target: {fileID: 5995642217692288214, guid: 4b955e36122120147b5c7ea54795e920,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6234689798981087958, guid: 4b955e36122120147b5c7ea54795e920,
         type: 3}
@@ -14729,7 +14744,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -16596,7 +16611,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259396206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16604,7 +16619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.5, y: -21.1}
+  m_AnchoredPosition: {x: 5, y: -21.1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1259396208
@@ -33792,6 +33807,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8256134651489076907, guid: ed58b6e0510c57d409873411fcc343d8,
+        type: 3}
+      propertyPath: m_TagString
+      value: LoreTablet
+      objectReference: {fileID: 0}
     - target: {fileID: -2859109400176981367, guid: ed58b6e0510c57d409873411fcc343d8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -35519,8 +35539,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe8c0c6f8b6760f48a849a46091fe132, type: 2}
+  m_sharedMaterial: {fileID: 2584866281715577158, guid: fe8c0c6f8b6760f48a849a46091fe132,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -36232,7 +36253,7 @@ MonoBehaviour:
   doubleJumpUnlocked: 1
   midAir: 1
   doubleJumpModifier: 0.5
-  gunCrownUnlocked: 1
+  gunCrownUnlocked: 0
   Ammunition: 1
   shootingCooldown: 0
   firstAid: 2
@@ -56572,8 +56593,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe8c0c6f8b6760f48a849a46091fe132, type: 2}
+  m_sharedMaterial: {fileID: 2584866281715577158, guid: fe8c0c6f8b6760f48a849a46091fe132,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -58893,8 +58915,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4148202869529671506}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.91287583, z: -0, w: 0.4082374}
-  m_LocalPosition: {x: -41.54, y: 30.58, z: 56.27}
+  m_LocalRotation: {x: -0, y: 0.71047705, z: -0, w: -0.7037204}
+  m_LocalPosition: {x: -22.172, y: 31.85, z: 56.928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58903,7 +58925,7 @@ Transform:
   - {fileID: 1617197092061396942}
   - {fileID: 396828610}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 131.812, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 269.453, z: 0}
 --- !u!224 &8001312198232837906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -59917,8 +59939,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe8c0c6f8b6760f48a849a46091fe132, type: 2}
+  m_sharedMaterial: {fileID: 2584866281715577158, guid: fe8c0c6f8b6760f48a849a46091fe132,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
