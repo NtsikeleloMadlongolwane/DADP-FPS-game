@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -75,6 +76,10 @@ public class FirstPersonControls : MonoBehaviour
     public ParticleSystem particleSystem;
     public GameObject HUD;
     public PlayerHealth playerHealthScript;
+
+
+    public GameObject VoidKeyMessage;
+    public GameObject CrystalyKeyMessage;
 
     // RESTART UI
 
@@ -368,8 +373,13 @@ public class FirstPersonControls : MonoBehaviour
                 {
                     gunCrownUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
-                    playerPNG[0].SetActive(false);
-                    playerPNG[1].SetActive(true);
+                    StartCoroutine(KeyMessage(CrystalyKeyMessage));
+
+                }
+                else if (objectName == "BlackKey")
+                {
+                    Debug.Log("You just picked up " + objectName);
+                    StartCoroutine(KeyMessage(VoidKeyMessage));
                 }
 
             }
@@ -672,5 +682,12 @@ public class FirstPersonControls : MonoBehaviour
         Respawn();
         RespawnInScreen.SetActive(false);
         HUD.SetActive(true);
+    }
+
+    public IEnumerator KeyMessage(GameObject message)
+    {
+        message.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        message.SetActive(false);
     }
 }
