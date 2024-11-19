@@ -434,7 +434,7 @@ public class FirstPersonControls : MonoBehaviour
 
                     // freeze other things too 
                     Time.timeScale = 0;
-                    canMove = true;
+                    canMove = false;
 
 
                 }
@@ -447,7 +447,7 @@ public class FirstPersonControls : MonoBehaviour
                     HUD.SetActive(true);
                     //unfreeze other things too
                     Time.timeScale = 1;
-                    canMove = false;
+                    canMove = true;
 
                 }
 
