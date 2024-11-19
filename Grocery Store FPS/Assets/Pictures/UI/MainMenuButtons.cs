@@ -41,8 +41,8 @@ public class MainMenuButtons : MonoBehaviour
             potions[indices[i]].rectTransform.localPosition = positions[i];
             potionButtons[indices[i]].GetComponent<RectTransform>().localPosition = positions[i]; // Correctly get RectTransform
             potions[indices[i]].rectTransform.localScale = (i == centerOption)
-                ? new Vector3(0.5f, 0.5f, 1f)
-                : new Vector3(0.3f, 0.3f, 1f);
+                ? new Vector3(1f, 1f, 1f)
+                : new Vector3(0.8f, 0.8f, 1f);
 
             // Enable or disable buttons based on their position
             potionButtons[indices[i]].gameObject.SetActive(i == centerOption);
