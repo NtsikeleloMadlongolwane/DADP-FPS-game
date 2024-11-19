@@ -26,6 +26,7 @@ public class UIButtonManager : MonoBehaviour
     public GameObject attention_mainMenu;
     public GameObject attention_restart;
 
+    public GameObject RespawningInScreen;
     // MAIN MENU BUTTONS //
     public void PlayButton()
     {
@@ -133,10 +134,21 @@ public class UIButtonManager : MonoBehaviour
         attention_restart.SetActive(false);
     }
 
+
     public void RestartYes()
     {
-        SceneManager.LoadScene("SampleScene");
+        // switch cames
+        //Soawn repsawn in menu
+        attention_restart.SetActive(false);
+        RespawningInScreen.SetActive(true);
+
+        // Respawn countdown
+        StartCoroutine(firstPersonControls.RestartSequence());
+
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        firstPersonControls.canMove= true;
+        firstPersonControls.gamePaused= false;
     }
 
     public void MainMenu()

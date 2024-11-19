@@ -18,7 +18,15 @@ public class Respawner : MonoBehaviour
         {
             if(other.gameObject.name == "StarkKey Final")
             {
-                other.gameObject.transform.position = crystalKeySpot.transform.position;
+                // check if spinning thing is ennabled
+                RotateItems rotateItems = other.GetComponent<RotateItems>();
+
+                if (rotateItems.enabled == true)
+                {
+                   Rigidbody rb = other.GetComponent<Rigidbody>();
+                    rb.velocity = Vector3.zero;
+                    other.gameObject.transform.position = crystalKeySpot.transform.position;
+                }
             }
             else
             {

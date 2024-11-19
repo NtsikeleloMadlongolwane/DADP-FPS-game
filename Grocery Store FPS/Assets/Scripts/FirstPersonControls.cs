@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -71,12 +70,17 @@ public class FirstPersonControls : MonoBehaviour
     public float shootingCooldown = 0f;
 
     [Header("UI")]
-    public GameObject[] health;
-    public GameObject[] heals;
     public int firstAid = 2;
     public PlayerHealth playerHealing;
     public ParticleSystem particleSystem;
     public GameObject HUD;
+    public PlayerHealth playerHealthScript;
+
+    // RESTART UI
+
+    public GameObject[] countDownPics;
+    public GameObject RespawnText;
+    public GameObject RespawnInScreen;
 
     [Space(5)]
     public GameObject[] cursor;
@@ -123,6 +127,8 @@ public class FirstPersonControls : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
+
+        playerHealthScript = GetComponent<PlayerHealth>();
 
 
         //objectText = GetComponent<TextMeshPro>();
@@ -201,8 +207,6 @@ public class FirstPersonControls : MonoBehaviour
             hasAirDashed = false;
         }
         // Dash mechanic ends here
-
-
     }
 
     // DASH MECHANIC ///
@@ -519,26 +523,17 @@ public class FirstPersonControls : MonoBehaviour
 
     void Heal()
     {
-        if (firstAid > 0)
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+
+
+        if (firstAid > 0 && playerHealth.currentHealth !=50)
         {
-            // playerHealing.Healing();
-            //playerHealing.TakeDamage(0);
+            playerHealth.currentHealth += 10;
             particleSystem.Play();
             firstAid--;
         }
 
-        if (firstAid == 1)
-        {
-            heals[0].SetActive(true);
-            heals[1].SetActive(false);
-        }
-        else
-        {
-            heals[0].SetActive(false);
-            heals[1].SetActive(false);
-        }
-        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-        playerHealth.currentHealth += 10;
+        
     }
     public void PauseGameMenu()
     {
@@ -548,6 +543,10 @@ public class FirstPersonControls : MonoBehaviour
             canMove = true;
             Time.timeScale = 0;
             UIbuttonManager.PauseGame();
+            
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            playerHealth.LoseScreen.SetActive(false);
+            playerHealth.WinScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
         }
         else
@@ -649,5 +648,29 @@ public class FirstPersonControls : MonoBehaviour
         characterController.enabled = false;
         gameObject.transform.position = respawnPosition.transform.position;
         characterController.enabled = true;
+    }
+
+    public IEnumerator RestartSequence()
+    {
+        countDownPics[0].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        countDownPics[0].SetActive(false);
+        countDownPics[1].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        countDownPics[1].SetActive(false);
+        countDownPics[2].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        countDownPics[2].SetActive(false);
+
+        // Refill health
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        playerHealth.currentHealth = 50;
+
+        // Refill Heals
+        firstAid = 2;
+        respawnPosition.transform.position = playerHealth.teleporterPosition.transform.position;
+        Respawn();
+        RespawnInScreen.SetActive(false);
+        HUD.SetActive(true);
     }
 }

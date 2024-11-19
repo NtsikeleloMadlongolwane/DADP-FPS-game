@@ -47,6 +47,7 @@ public class BossMovements : MonoBehaviour
     public ParticleSystem crystalBeam;
     public ParticleSystem crystalFlame;
 
+
     public void Update()
     {
         if (seal == null && !hasFightStarted)
@@ -225,8 +226,7 @@ public class BossMovements : MonoBehaviour
         Instantiate(TelePortSplash, gameObject.transform.position, Quaternion.identity);
         Splash.Stop();
         Destroy(gameObject);
-        
-        //Win Screen
+          
     }
     public void TakeDamage(int damage)
     {
