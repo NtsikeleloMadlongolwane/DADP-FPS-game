@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.VersionControl;
+//using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -66,7 +66,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
 
     [Header("GunCrown")]
-    public bool gunCrownUnlocked = true;
+    public bool gunCrownUnlocked = false;
     public int Ammunition = 1;
     public float shootingCooldown = 0f;
 
@@ -369,7 +369,7 @@ public class FirstPersonControls : MonoBehaviour
                     doubleJumpUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
                 }
-                else if (objectName == "StarkKey")
+                else if (objectName == "StarkKey Final")
                 {
                     gunCrownUnlocked = true;
                     Debug.Log("You just picked up " + objectName);
