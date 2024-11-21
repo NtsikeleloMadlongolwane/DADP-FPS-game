@@ -47,6 +47,12 @@ public class BossMovements : MonoBehaviour
     public ParticleSystem crystalBeam;
     public ParticleSystem crystalFlame;
 
+    [Header("ANimation")]
+
+    public GameObject PlaceHolderBoss;
+    public GameObject AnimatedBoss;
+    public BossAnimation bossAnimation;
+
 
     public void Update()
     {
@@ -54,6 +60,10 @@ public class BossMovements : MonoBehaviour
         {
             StartCoroutine(FightStart());
             hasFightStarted = true;
+            PlaceHolderBoss.SetActive(false);
+            AnimatedBoss.SetActive(true);
+
+            bossAnimation.isIdle = true;
         }
     }
 
@@ -77,6 +87,7 @@ public class BossMovements : MonoBehaviour
     }
     public IEnumerator EnemySpawnMove()
     {
+        bossAnimation.isSpawning = true;
         Splash.Play();
         // spawn black balls and move them to enemy positions
 
@@ -92,6 +103,7 @@ public class BossMovements : MonoBehaviour
         {
             GameObject enemy = Instantiate(WalkingEnemyPrefab , SpawnPoints[i].position, SpawnPoints[1].rotation);
         }
+        bossAnimation.isSpawning = false;
     }
     private IEnumerator MoveOrbToPosition(GameObject orb, Vector3 targetPosition, float speed)
     {
@@ -111,6 +123,7 @@ public class BossMovements : MonoBehaviour
 
     public IEnumerator SpikeMove()
     {
+        bossAnimation.isSpawning = true;
         GlowingGenStone.Play();
         yield return new WaitForSeconds(0.5f);
         GameObject spike;
@@ -124,11 +137,13 @@ public class BossMovements : MonoBehaviour
         } 
         yield return new WaitForSeconds(8f);
         GlowingGenStone.Stop();
+        bossAnimation.isSpawning = false;
     }
 
 
     public IEnumerator TargetPillars()
     {
+        bossAnimation.isTargeting = true;
         //Vector3 spawnPoint = player.transform.position;
         Vector3 spawnPoint = new Vector3(player.transform.position.x, 29.824f, player.transform.position.z);
         ParticleSystem fire = Instantiate(CrystalFlame, spawnPoint, Quaternion.identity);
@@ -138,11 +153,12 @@ public class BossMovements : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(pillar);
         fire.Stop();
+        bossAnimation.isTargeting = false;
     }
 
     public IEnumerator PillarSequence()
     {
-        crystalBeam.Play();
+        //crystalBeam.Play();
         crystalFlame.Play();
 
         for (int i = 0; i < 10; i++)
@@ -152,7 +168,7 @@ public class BossMovements : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5); // space to shoot boos
-        crystalBeam.Stop();
+        //crystalBeam.Stop();
         crystalFlame.Stop();
     }
 
@@ -209,11 +225,13 @@ public class BossMovements : MonoBehaviour
         TelePortSplash.Play();
         yield return new WaitForSeconds(3f);
         FightMode = true;
+        bossAnimation.isIdle = false;
     }
 
     public IEnumerator BossDeath()
     {
         // Stop fighting
+        bossAnimation.isSpawning = true;
         FightMode=false;
         TelePortSplash.Play();
         yield return new WaitForSeconds(1f);
