@@ -18,8 +18,8 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isJumping = FirstPersonControls.isJumping;
-        playerAnimations.SetBool("isWalking", FirstPersonControls.isWalking);
-        playerAnimations.SetBool("isJumping", FirstPersonControls.isJumping);
+       // isJumping = FirstPersonControls.isJumping;
+        //playerAnimations.SetBool("isWalking", FirstPersonControls.isWalking);
+        //playerAnimations.SetBool("isJumping", FirstPersonControls.isJumping);
     }
 }

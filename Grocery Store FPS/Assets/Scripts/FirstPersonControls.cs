@@ -106,6 +106,9 @@ public class FirstPersonControls : MonoBehaviour
     [Header("Animation")]
     public bool isWalking;
     public bool isJumping;
+    public bool isShooting = false;
+
+    public PlayerAnimations playerAnimations;
 
     [Header("Dash Mechanin")]
     public float dashSpeed = 20f;
@@ -135,7 +138,7 @@ public class FirstPersonControls : MonoBehaviour
 
         playerHealthScript = GetComponent<PlayerHealth>();
 
-
+        playerAnimations = GetComponent<PlayerAnimations>();
         //objectText = GetComponent<TextMeshPro>();
         // objectDiscription = GetComponent<TextMeshPro>();
         // objectHowToUse = GetComponent<TextMeshPro>();
@@ -244,7 +247,6 @@ public class FirstPersonControls : MonoBehaviour
     // DASH MECHANIC ///
     public bool Move()
     {
-
         // Create a movement vector based on the input
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
 
@@ -304,6 +306,10 @@ public class FirstPersonControls : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             midAir = true;
             isJumping = true;
+            if (isJumping)
+            {
+                isJumping = false; 
+            }
             return false;
         }
         else
@@ -311,13 +317,17 @@ public class FirstPersonControls : MonoBehaviour
             if (midAir == true)
             {
                 DoubleJump();
-                midAir = false;
-                isJumping = true;
+                midAir = true;
+                isJumping = false;
                 return false;
+
             }
         }
-        isJumping = false;
+
+        isJumping =false;
         return true;
+
+        //return isJumping;
     }
     public void PickUpObject()
     {
@@ -495,25 +505,27 @@ public class FirstPersonControls : MonoBehaviour
 
     public void GunCrown()
     {
+
         if (gunCrownUnlocked == true)
         {
             if (gamePaused == false && canMove == true)
             {
                 if (Ammunition == 1)
                 {
+                        // Instantiate the projectile at the fire point
+                        GameObject projectile1 = Instantiate(projectilePrefab, RightFirePoint.position, RightFirePoint.rotation);
+                        //GameObject projectile2 = Instantiate(projectilePrefab, LeftFirePoint.position, LeftFirePoint.rotation);
 
-                    // Instantiate the projectile at the fire point
-                    GameObject projectile1 = Instantiate(projectilePrefab, RightFirePoint.position, RightFirePoint.rotation);
-                    //GameObject projectile2 = Instantiate(projectilePrefab, LeftFirePoint.position, LeftFirePoint.rotation);
+                        // Get the Rigidbody component of the projectile and set its velocity
+                        Rigidbody rb = projectile1.GetComponent<Rigidbody>();
+                        rb.velocity = RightFirePoint.forward * projectileSpeed;
 
-                    // Get the Rigidbody component of the projectile and set its velocity
-                    Rigidbody rb = projectile1.GetComponent<Rigidbody>();
-                    rb.velocity = RightFirePoint.forward * projectileSpeed;
-
-                    gunCrownUnlocked = false;
-                    // Destroy the projectile after 3 seconds
-                    Destroy(projectile1, 3f);
-                    Invoke("ShootingCooldown", shootingCooldown);
+                        gunCrownUnlocked = false;
+                        // Destroy the projectile after 3 seconds
+                        Destroy(projectile1, 3f);
+                       Invoke("ShootingCooldown", shootingCooldown);
+                    
+                 
                 }
             }
 
@@ -523,6 +535,7 @@ public class FirstPersonControls : MonoBehaviour
     {
         Debug.Log("This function is called after a 2-second delay.");
         gunCrownUnlocked = true;
+        //isShooting = false;
     }
 
     public void Restart()
@@ -586,7 +599,7 @@ public class FirstPersonControls : MonoBehaviour
                     string objectTag = hit.collider.gameObject.tag;
                     objectHowToUse.text = "PRESS [E] TO PICK UP";
 
-                    if (objectName == "StarkKey")
+                    if (objectName == "StarkKey Final")
                     {
                         objectText.text = "CRYSTAL KEY";
                         objectDiscription.text = "KEY THAT OPENS DOOR TO DOUNGOEN BOSS";
