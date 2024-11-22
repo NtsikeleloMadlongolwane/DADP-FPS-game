@@ -33551,7 +33551,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4148202869529671506}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -35395,7 +35395,7 @@ MonoBehaviour:
   doubleJumpModifier: 0.5
   gunCrownUnlocked: 0
   Ammunition: 1
-  shootingCooldown: 0.3
+  shootingCooldown: 0
   firstAid: 2
   playerHealing: {fileID: 7374624927369145065}
   particleSystem: {fileID: 396828612}
