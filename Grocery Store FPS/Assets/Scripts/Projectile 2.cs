@@ -34,6 +34,9 @@ public class Projectile2 : MonoBehaviour
             // Destroy the projectile upon collision
             Destroy(gameObject);
         }
-
+        else if (other.CompareTag("Upgrade"))
+        {
+   
+        }
     }
 }

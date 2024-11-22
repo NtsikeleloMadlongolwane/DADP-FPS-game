@@ -7,11 +7,10 @@ public class TrapDoorTrigger : MonoBehaviour
     public TrapDoor trapdoor;
     public GameObject[] destructibleObjects;
 
-    private int counter = 0;
+    private int counter = 1;
 
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        counter++;
         if (other.CompareTag("Player"))
         {
             if(counter == 1)
@@ -42,6 +41,7 @@ public class TrapDoorTrigger : MonoBehaviour
         if (allDestroyed)
         {
             trapdoor.RaiseTrapdoor();
+            counter++;
         }
     }
 }
